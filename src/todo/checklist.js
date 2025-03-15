@@ -2,22 +2,26 @@ import { CheckItem } from "./checkitem"
 class CheckList {
   #items = []
 
-  addCheckItem(value) {
+  addItem(value) {
     const checkItem = value instanceof CheckItem ? value : new CheckItem(value)
     this.#items.push(checkItem)
     return this
   }
-
-  removeCheckItem(value) {
+  getItem(value) {
     let checkItem = ""
 
     if (typeof value === "number") {
       checkItem = this.#items[value]
-      this.#items.splice(value, 1)
     } else if (typeof value === "string") {
       checkItem = this.#items.find((checkItem) => checkItem.title === value)
-      if (checkItem) this.#items.splice(this.#items.indexOf(checkItem), 1)
     }
+
+    return checkItem
+  }
+  removeItem(value) {
+    let checkItem = this.getItem(value)
+
+    if (checkItem) this.#items.splice(this.#items.indexOf(checkItem), 1)
 
     return checkItem
   }
@@ -47,7 +51,7 @@ class CheckList {
 
   parse(value) {
     const obj = typeof value === "object" ? value : JSON.parse(value)
-    for (let i of obj.items) this.addCheckItem(new CheckItem().parse(i))
+    for (let i of obj.items) this.addItem(new CheckItem().parse(i))
     return this
   }
 }
