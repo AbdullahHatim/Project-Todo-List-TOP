@@ -4,7 +4,7 @@ import { CheckList } from "./checklist"
 class Todo {
   #title = ""
   #description = ""
-  #dueDate = null
+  #dueDate = new Date()
   #creationDate = new Date()
   #priority = Priority.NORMAL
   #notes = ""
@@ -61,7 +61,31 @@ class Todo {
   get checkList() {
     return this.#checkList
   }
+
+  toString() {
+    return `
+    {
+     "title": "${this.#title}",
+     "description": "${this.#description}",
+     "dueDate": "${this.#dueDate.toString()}",
+     "creationDate": "${this.#creationDate.toString()}",
+     "priority": ${this.#priority},
+     "notes": "${this.#notes}",
+     "checkList": ${this.#checkList.toString()}
+    }
+    `.trim()
+  }
+
+  parse(value) {
+    const obj = typeof value === "object" ? value : JSON.parse(value)
+    this.#title = obj.title
+    this.#description = obj.description
+    this.#dueDate = new Date(obj.dueDate)
+    this.#creationDate = new Date(obj.creationDate)
+    this.#notes = obj.notes
+    this.#checkList = new CheckList().parse(obj.checkList)
+    return this
+  }
 }
-//TODO: Test more
 
 export default Todo

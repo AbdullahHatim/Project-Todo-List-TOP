@@ -21,6 +21,22 @@ class CheckItem {
   get checked() {
     return this.#checked
   }
+
+  toString() {
+    return `
+    {
+     "title": "${this.#title}",
+     "checked": ${this.#checked}
+    }
+    `.trim()
+  }
+
+  parse(value) {
+    const obj = typeof value === "object" ? value : JSON.parse(value)
+    this.#title = obj.title
+    this.#checked = obj.checked
+    return this
+  }
 }
 
 export { CheckItem }

@@ -5,6 +5,7 @@ class CheckList {
   addCheckItem(value) {
     const checkItem = value instanceof CheckItem ? value : new CheckItem(value)
     this.#items.push(checkItem)
+    return this
   }
 
   removeCheckItem(value) {
@@ -23,6 +24,31 @@ class CheckList {
 
   get items() {
     return this.#items
+  }
+  // Serialize Each CheckItem
+  toString() {
+    return `
+    {
+     "items": [
+      ${(() => {
+        return this.#items.map((checkItem, index) => {
+          let string = checkItem.toString()
+
+          const lastItem = index == this.#items.length
+          if (lastItem) string = string.slice(0, -1)
+
+          return string
+        })
+      })()}
+     ]
+    }
+    `.trim()
+  }
+
+  parse(value) {
+    const obj = typeof value === "object" ? value : JSON.parse(value)
+    for (let i of obj.items) this.addCheckItem(new CheckItem().parse(i))
+    return this
   }
 }
 
