@@ -1,19 +1,19 @@
 import { CheckItem } from "./checkitem"
 class CheckList {
-  #items = []
+  #list = []
 
   addItem(value) {
     const checkItem = value instanceof CheckItem ? value : new CheckItem(value)
-    this.#items.push(checkItem)
+    this.#list.push(checkItem)
     return this
   }
   getItem(value) {
     let checkItem = ""
 
     if (typeof value === "number") {
-      checkItem = this.#items[value]
+      checkItem = this.#list[value]
     } else if (typeof value === "string") {
-      checkItem = this.#items.find((checkItem) => checkItem.title === value)
+      checkItem = this.#list.find((checkItem) => checkItem.title === value)
     }
 
     return checkItem
@@ -21,24 +21,24 @@ class CheckList {
   removeItem(value) {
     let checkItem = this.getItem(value)
 
-    if (checkItem) this.#items.splice(this.#items.indexOf(checkItem), 1)
+    if (checkItem) this.#list.splice(this.#list.indexOf(checkItem), 1)
 
     return checkItem
   }
 
-  get items() {
-    return this.#items
+  get list() {
+    return this.#list
   }
   // Serialize Each CheckItem
   toString() {
     return `
     {
-     "items": [
+     "list": [
       ${(() => {
-        return this.#items.map((checkItem, index) => {
+        return this.#list.map((checkItem, index) => {
           let string = checkItem.toString()
 
-          const lastItem = index == this.#items.length
+          const lastItem = index == this.#list.length
           if (lastItem) string = string.slice(0, -1)
 
           return string
@@ -51,7 +51,7 @@ class CheckList {
 
   parse(value) {
     const obj = typeof value === "object" ? value : JSON.parse(value)
-    for (let i of obj.items) this.addItem(new CheckItem().parse(i))
+    for (let i of obj.list) this.addItem(new CheckItem().parse(i))
     return this
   }
 }
