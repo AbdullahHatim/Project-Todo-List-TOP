@@ -1,8 +1,6 @@
 import { Todo } from "./todo"
-//TODO: work on category enum
 class TodoList {
   #title = ""
-  #category = ""
   #creationDate = new Date()
   #list = []
 
@@ -55,7 +53,6 @@ class TodoList {
     return `
     {
       "title" : "${this.#title}",
-      "category": "${this.#category}",
       "creationDate": "${this.#creationDate.toString()}",
      "list": [
       ${(() => {
