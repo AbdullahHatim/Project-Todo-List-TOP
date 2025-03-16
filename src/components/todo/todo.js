@@ -1,8 +1,9 @@
-import { Priority } from "../../utils/priority"
+import { Priority } from "../utils/priority"
 import { CheckList } from "./checklist"
 
 class Todo {
   #title = ""
+  #checked = false
   #description = ""
   #dueDate = new Date()
   #creationDate = new Date()
@@ -20,6 +21,14 @@ class Todo {
 
   get title() {
     return this.#title
+  }
+
+  toggleCheck() {
+    this.#checked = !this.#checked
+  }
+
+  get checked() {
+    return this.#checked
   }
 
   set description(value) {
@@ -66,6 +75,7 @@ class Todo {
     return `
     {
      "title": "${this.#title}",
+     "checked": ${this.#checked},
      "description": "${this.#description}",
      "dueDate": "${this.#dueDate.toString()}",
      "creationDate": "${this.#creationDate.toString()}",
@@ -79,6 +89,7 @@ class Todo {
   parse(value) {
     const obj = typeof value === "object" ? value : JSON.parse(value)
     this.#title = obj.title
+    this.#checked = obj.checked
     this.#description = obj.description
     this.#dueDate = new Date(obj.dueDate)
     this.#creationDate = new Date(obj.creationDate)
