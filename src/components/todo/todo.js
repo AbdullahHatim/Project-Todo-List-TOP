@@ -1,4 +1,4 @@
-import { Priority } from "./priority"
+import { Priority } from "../../utils/priority"
 import { CheckList } from "./checklist"
 
 class Todo {
