@@ -1,4 +1,4 @@
-const Priority = (function () {
+export const Priority = (function () {
   const HIGH = 1
   const NORMAL = 0
   const LOW = -1
@@ -9,5 +9,3 @@ const Priority = (function () {
 
   return Object.freeze({ HIGH, NORMAL, LOW, getType })
 })()
-
-export { Priority }
