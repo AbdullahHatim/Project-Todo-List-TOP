@@ -57,7 +57,7 @@ class TodoList {
     this.#title = obj.title
     this.#creationDate = new Date(obj.creationDate)
 
-    for (let i of obj.list) this.addTodo(new Todo().parse(i))
+    for (let i of obj.list) this.addItem(new Todo().parse(i))
     return this
   }
 }
