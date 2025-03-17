@@ -23,15 +23,11 @@ class ProjectList {
   parse(value) {
     const obj = typeof value === "object" ? value : JSON.parse(value)
 
-    for (let i of obj.list) this.addItem(new TodoList().parse(i))
+    for (let i of obj.list) this.addItem(new Project().parse(i))
     return this
   }
 }
 
 addListControlComponents(ProjectList, Project)
-const list = new ProjectList().addItem("new Project")
-let project = list.getItem()
-let todoList = project.addItem("new TodoList").getItem()
-todoList.addItem("New Todo").getItem().checkList.addItem("Ride a Person")
-console.log(list)
+
 export { ProjectList }
