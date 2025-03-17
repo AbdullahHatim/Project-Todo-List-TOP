@@ -20,8 +20,9 @@ export function addListControlComponents(className, itemClass) {
     this.list.push(item)
     return this
   }
+
   className.prototype.getItem = function (value) {
-    let item = ""
+    let item = this.list.at(-1) || ""
 
     if (typeof value === "number") {
       item = this.list[value]
