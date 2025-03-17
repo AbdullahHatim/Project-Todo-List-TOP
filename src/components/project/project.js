@@ -1,4 +1,3 @@
-import { Todo } from "../todo/todo"
 import { TodoList } from "../todo/todolist"
 import { addListControlComponents } from "../utils/listcontrols"
 
@@ -33,26 +32,13 @@ class Project {
     return this.#list
   }
 
-  // Serialize Each Todo
-  //TODO: maybe add this "list" mess to the list control components
   toString() {
     return `
     {
       "title" : "${this.#title}",
       "creationDate": "${this.#creationDate.toString()}",
       "icon": "${this.#icon}",
-     "list": [
-      ${(() => {
-        return this.#list.map((todoList, index) => {
-          let string = todoList.toString()
-
-          const lastItem = index == this.#list.length
-          if (lastItem) string = string.slice(0, -1)
-
-          return string
-        })
-      })()}
-     ]
+      "list": [ ${this.listToJSON()} ]
     }
     `.trim()
   }
