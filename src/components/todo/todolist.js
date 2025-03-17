@@ -30,7 +30,6 @@ class TodoList {
     return this.#list
   }
 
-  // Serialize Each Todo
   toString() {
     return `
     {

@@ -13,7 +13,6 @@ class CheckList {
     return this.#list
   }
 
-  // Serialize Each CheckItem
   toString() {
     return `
     {

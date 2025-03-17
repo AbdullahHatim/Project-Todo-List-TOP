@@ -12,8 +12,6 @@ class ProjectList {
     return this.#list
   }
 
-  // Serialize Each Todo
-  //TODO: maybe add this "list" mess to the list control components
   toString() {
     return `
     {
@@ -32,8 +30,8 @@ class ProjectList {
 
 addListControlComponents(ProjectList, Project)
 const list = new ProjectList().addItem("new Project")
-let project = list.getItem("new Project")
-let todoList = project.addItem("new TodoList").getItem(0)
-todoList.addItem("New Todo").getItem(0).checkList.addItem("Ride a Person")
+let project = list.getItem()
+let todoList = project.addItem("new TodoList").getItem()
+todoList.addItem("New Todo").getItem().checkList.addItem("Ride a Person")
 console.log(list)
 export { ProjectList }
