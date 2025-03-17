@@ -17,19 +17,7 @@ class ProjectList {
   toString() {
     return `
     {
-     "list": [
-      ${(() => {
-        //Fix this for every List
-        return this.#list.map((todoList, index) => {
-          let string = todoList.toString()
-
-          const lastItem = index == this.#list.length
-          if (lastItem) string = string.slice(0, -1)
-
-          return string
-        })
-      })()}
-     ]
+     "list": [ ${this.listToJSON()} ]
     }
     `.trim()
   }
@@ -43,5 +31,9 @@ class ProjectList {
 }
 
 addListControlComponents(ProjectList, Project)
-console.log(new ProjectList().addItem("new Project"))
+const list = new ProjectList().addItem("new Project")
+let project = list.getItem("new Project")
+let todoList = project.addItem("new TodoList").getItem(0)
+todoList.addItem("New Todo").getItem(0).checkList.addItem("Ride a Person")
+console.log(list)
 export { ProjectList }

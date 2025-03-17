@@ -36,18 +36,7 @@ class TodoList {
     {
       "title" : "${this.#title}",
       "creationDate": "${this.#creationDate.toString()}",
-     "list": [
-      ${(() => {
-        return this.#list.map((todo, index) => {
-          let string = todo.toString()
-
-          const lastItem = index == this.#list.length
-          if (lastItem) string = string.slice(0, -1)
-
-          return string
-        })
-      })()}
-     ]
+      "list": [ ${this.listToJSON()} ]
     }
     `.trim()
   }

@@ -17,18 +17,7 @@ class CheckList {
   toString() {
     return `
     {
-     "list": [
-      ${(() => {
-        return this.#list.map((checkItem, index) => {
-          let string = checkItem.toString()
-
-          const lastItem = index == this.#list.length
-          if (lastItem) string = string.slice(0, -1)
-
-          return string
-        })
-      })()}
-     ]
+     "list": [ ${this.listToJSON()} ]
     }
     `.trim()
   }
