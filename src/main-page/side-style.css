@@ -11,6 +11,9 @@
   user-select: none;
   p {
     pointer-events: none;
+  }
+  .icon {
+    pointer-events: none;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -38,12 +41,21 @@
 .side-item {
   height: 34px;
   border-radius: 2px;
-  display: grid;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   width: 100%;
+}
+.side-header {
+  font-size: 1.1em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  color: var(--paragraph-color);
 }
 
 .add-task {
-  p {
+  .icon {
     svg {
       fill: var(--primary-color);
     }
@@ -53,7 +65,7 @@
 .active {
   background-color: var(--highlight-color);
   color: var(--primary-color);
-  p {
+  .icon {
     svg {
       fill: var(--primary-color);
       color: inherit;
