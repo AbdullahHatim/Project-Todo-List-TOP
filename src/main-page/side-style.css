@@ -1,0 +1,62 @@
+.side-content {
+  height: 100%;
+  gap: 16px;
+  padding: 1em;
+  overflow: auto;
+}
+.pre-made,
+.user-made {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+  p {
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    svg {
+      height: 1.6em;
+    }
+  }
+}
+
+.pre-made {
+  /* background-color: aquamarine; */
+  height: max-content;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin-bottom: 16px;
+}
+
+.user-made {
+  height: 110%;
+  background-color: aquamarine;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.side-item {
+  height: 34px;
+  border-radius: 2px;
+  display: grid;
+  width: 100%;
+}
+
+.add-task {
+  p {
+    svg {
+      fill: var(--primary-color);
+    }
+  }
+}
+
+.active {
+  background-color: var(--highlight-color);
+  color: var(--primary-color);
+  p {
+    svg {
+      fill: var(--primary-color);
+      color: inherit;
+    }
+  }
+}
