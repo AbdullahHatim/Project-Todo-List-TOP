@@ -1,75 +1,136 @@
-:root {
-  --transition-time: 500ms;
-  --transition-type: ease;
-  /* --side: 280px; */
-}
+@layer color-variables {
+  :root {
+    --primary-background-color: #ffffff;
+    --secondary-background-color: #f8fcfa;
 
-#content {
-  height: 100%;
-  display: grid;
-}
+    --primary-color: #1a67f8;
+    --secondary-color: #c1c1c1;
 
-.side {
-  position: fixed;
-  background-color: aqua;
-  width: 280px;
-  height: 100%;
-  z-index: 10;
-  left: 0;
-  transition: var(--transition-type) var(--transition-time) left;
-}
+    --highlight-color: #8cb3fb;
+    --hover-color: #5d5d5d22;
 
-.main {
-  position: relative;
-  background-color: brown;
-  height: auto;
-  margin-left: 280px;
-  transition: var(--transition-type) var(--transition-time);
-  padding: 3em;
-  padding-bottom: 0.5em;
-}
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #444444;
 
-.slide-out {
-  left: -280px;
-  .top {
-    .menu-button {
-      right: -50px;
-    }
+    --headline-color: #202020;
+
+    --paragraph-color: #666666;
+    --outline-color: #e6e6e6;
   }
-  ~ .main {
-    margin-left: 0px;
+}
+@layer reset {
+  * {
+    box-sizing: border-box;
+  }
+  p {
+    margin: 0;
+  }
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    outline: none;
   }
 }
 
-.top {
-  position: relative;
-  height: 32px;
-  padding-top: 0.5em;
-  .menu-button {
-    transition: ease-in-out 500ms right;
-    position: absolute;
-    right: 0;
+@layer element-styling {
+  button {
+    border-radius: 5px;
+    padding: 0.2em;
   }
-}
-.overlay {
-  position: fixed;
-  margin-left: 280px;
-  height: 100%;
-  width: 0;
-  background-color: #00000022;
-  transition: var(--transition-time) var(--transition-type) width;
+  button:hover {
+    background-color: var(--hover-color);
+  }
+  svg {
+    color: var(--secondary-text-color);
+    fill: var(--secondary-text-color);
+  }
+  h1 {
+    color: var(--headline-color);
+  }
 }
 
-@media (max-width: 750px) {
-  .overlay {
-    width: 100%;
+@layer main-page {
+  :root {
+    --transition-time: 500ms;
+    --transition-type: ease;
+    /* --side: 280px; */
   }
-  .slide-out {
-    .overlay {
-      width: 0;
-    }
+
+  #content {
+    height: 100%;
+    display: grid;
   }
+
+  .side {
+    position: fixed;
+    background-color: var(--secondary-background-color);
+    width: 280px;
+    height: 100%;
+    z-index: 10;
+    left: 0;
+    box-sizing: border-box;
+    transition: var(--transition-type) var(--transition-time) left;
+  }
+
   .main {
-    margin-left: 0px;
+    position: relative;
+    background-color: var(--primary-background-color);
+    height: auto;
+    margin-left: 280px;
+    transition: var(--transition-type) var(--transition-time);
+    padding: 3em;
+    padding-bottom: 0.5em;
+  }
+
+  .slide-out {
+    left: -280px;
+    .top {
+      .menu-button {
+        right: -50px;
+      }
+    }
+    ~ .main {
+      margin-left: 0px;
+    }
+  }
+
+  .top {
+    position: relative;
+    height: 32px;
+    /* padding: 1em; */
+    padding-top: 0.5em;
+    .menu-button {
+      transition: ease-in-out 500ms right;
+      position: absolute;
+      right: 1em;
+    }
+    /* TODO: refactor overlay */
+  }
+  .overlay {
+    position: fixed;
+    margin-left: 280px;
+    height: 100%;
+    width: 0;
+    background-color: #00000022;
+    transition: var(--transition-time) var(--transition-type) width;
+  }
+
+  @media (max-width: 750px) {
+    .overlay {
+      width: 100%;
+    }
+    .slide-out {
+      .overlay {
+        width: 0;
+      }
+    }
+    .main {
+      margin-left: 0px;
+    }
   }
 }
