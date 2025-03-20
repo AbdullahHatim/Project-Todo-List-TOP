@@ -51,21 +51,22 @@
     right: 0;
   }
 }
+.overlay {
+  position: fixed;
+  margin-left: 280px;
+  height: 100%;
+  width: 0;
+  background-color: #00000022;
+  transition: var(--transition-time) var(--transition-type) width;
+}
 
 @media (max-width: 750px) {
   .overlay {
-    position: fixed;
-    margin-left: 280px;
-    height: 100%;
     width: 100%;
-    background-color: #00000055;
-    transition: var(--transition-time) var(--transition-type) opacity;
   }
-
   .slide-out {
     .overlay {
-      opacity: 0;
-      display: none;
+      width: 0;
     }
   }
   .main {
