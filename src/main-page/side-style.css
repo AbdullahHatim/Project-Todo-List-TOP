@@ -16,6 +16,8 @@
     pointer-events: none;
     display: flex;
     align-items: center;
+    aspect-ratio: 1/1;
+    height: 20px;
     gap: 6px;
     svg {
       height: 1.6em;
@@ -32,8 +34,6 @@
 }
 
 .user-made {
-  height: 110%;
-  background-color: aquamarine;
   flex-grow: 1;
   flex-shrink: 1;
 }
@@ -55,6 +55,8 @@
 }
 
 .add-task {
+  color: var(--primary-color);
+  font-weight: 600;
   .icon {
     svg {
       fill: var(--primary-color);
