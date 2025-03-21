@@ -1,76 +1,94 @@
-.side-content {
-  height: 100%;
-  gap: 16px;
-  padding: 1em;
-  overflow: auto;
-}
-.pre-made,
-.user-made {
-  display: flex;
-  flex-direction: column;
-  user-select: none;
-  p {
-    pointer-events: none;
+@layer general {
+  .side-content {
+    height: 100%;
+    gap: 16px;
+    padding: 1em;
+    overflow: auto;
   }
-  .icon {
-    pointer-events: none;
+  .pre-made,
+  .user-made {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    p {
+      pointer-events: none;
+    }
+    .icon {
+      pointer-events: none;
+      display: grid;
+      height: 24px;
+      width: 24px;
+
+      gap: 6px;
+      svg {
+        height: 1.6em;
+      }
+    }
+  }
+  .pre-made {
+    /* background-color: aquamarine; */
+    height: max-content;
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-bottom: 16px;
+  }
+
+  .user-made {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  .side-item {
+    height: 34px;
+    border-radius: 2px;
     display: flex;
     align-items: center;
-    aspect-ratio: 1/1;
-    height: 20px;
     gap: 6px;
-    svg {
-      height: 1.6em;
-    }
+    width: 100%;
   }
 }
+@layer specific {
+  .side-header {
+    font-size: 1.1em;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: var(--paragraph-color);
+  }
 
-.pre-made {
-  /* background-color: aquamarine; */
-  height: max-content;
-  flex-grow: 1;
-  flex-shrink: 1;
-  margin-bottom: 16px;
-}
-
-.user-made {
-  flex-grow: 1;
-  flex-shrink: 1;
-}
-
-.side-item {
-  height: 34px;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 100%;
-}
-.side-header {
-  font-size: 1.1em;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  color: var(--paragraph-color);
-}
-
-.add-task {
-  color: var(--primary-color);
-  font-weight: 600;
-  .icon {
-    svg {
-      fill: var(--primary-color);
+  .add-task {
+    color: var(--primary-color);
+    font-weight: 600;
+    .icon {
+      svg {
+        fill: var(--primary-color);
+      }
     }
   }
-}
 
-.active {
-  background-color: var(--highlight-color);
-  color: var(--primary-color);
-  .icon {
-    svg {
-      fill: var(--primary-color);
-      color: inherit;
+  .active {
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    .icon {
+      svg {
+        fill: var(--primary-color);
+        color: inherit;
+      }
+    }
+  }
+  .add-project {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    .icon {
+      svg {
+        fill: var(--primary-color);
+      }
+    }
+    &:hover {
+      color: var(--primary-color);
+    }
+    &.active {
+      background-color: transparent;
     }
   }
 }
