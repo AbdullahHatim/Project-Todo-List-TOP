@@ -96,6 +96,7 @@
   }
 
   .remove-button {
+    overflow: hidden;
     display: grid;
     align-content: center;
     pointer-events: all;
