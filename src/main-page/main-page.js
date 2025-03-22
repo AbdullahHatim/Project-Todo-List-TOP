@@ -46,3 +46,4 @@ window.matchMedia("(max-width: 750px)").addEventListener("change", (event) => {
 
 //---------------load-content-----------------
 import("./side.js")
+import("./main.js")
