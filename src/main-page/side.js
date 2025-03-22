@@ -97,9 +97,10 @@ function getUserMadeContent() {
       button.appendChild(removeButton)
 
       removeButton.addEventListener("click", () => {
-        if (!confirm(`Delete Project ${project.icon} ${project.title}?`)) return
-        button.remove()
-        ProjectManager.removeProject(project.title)
+        modal.confirm(`Delete Project ${project.icon} ${project.title}?`).addEventListener("click", () => {
+          button.remove()
+          ProjectManager.removeProject(project.title)
+        })
       })
 
       button.querySelector("span").addEventListener("click", () => {
