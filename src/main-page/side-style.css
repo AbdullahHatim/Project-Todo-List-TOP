@@ -3,7 +3,8 @@
     height: 100%;
     gap: 16px;
     padding: 1em;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .pre-made,
   .user-made {
