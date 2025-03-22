@@ -8,7 +8,9 @@ content.innerHTML = /*html*/ `
 const side = document.querySelector(".side")
 const main = document.querySelector(".main")
 
-main.innerHTML = /*html*/ `<h1>Today</h1>`
+main.innerHTML = /*html*/ `
+<div class="main-content"></div>`
+
 side.innerHTML = /*html*/ `
 <div class="overlay"></div>
 <div class="top">
@@ -21,15 +23,15 @@ side.innerHTML = /*html*/ `
   <div class="user-made"></div>
 </div>`
 
-const menuButton = document.querySelector(".menu-button")
-
-menuButton.addEventListener("click", (e) => {
+const slide = (e) => {
   if (side.classList.contains("slide-out")) {
     side.classList.remove("slide-out")
   } else {
     side.classList.add("slide-out")
   }
-})
+}
+document.querySelector(".menu-button").addEventListener("click", slide)
+document.querySelector(".overlay").addEventListener("click", slide)
 
 if (window.matchMedia("(max-width: 750px)").matches) {
   side.classList.add("slide-out")
