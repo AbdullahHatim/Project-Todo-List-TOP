@@ -92,4 +92,17 @@
       background-color: transparent;
     }
   }
+
+  .remove-button {
+    display: grid;
+    align-content: center;
+    pointer-events: all;
+    position: relative;
+    margin-left: auto;
+    width: 32px;
+    height: 32px;
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
