@@ -14,11 +14,9 @@
       pointer-events: none;
     }
     .icon {
-      pointer-events: none;
       display: grid;
       height: 24px;
       width: 24px;
-
       gap: 6px;
       svg {
         height: 1.6em;
@@ -31,6 +29,9 @@
     flex-grow: 1;
     flex-shrink: 1;
     margin-bottom: 16px;
+    .icon {
+      pointer-events: none;
+    }
   }
 
   .user-made {
@@ -103,6 +104,9 @@
     height: 32px;
     &:hover {
       background-color: transparent;
+      svg {
+        color: red;
+      }
     }
   }
 }
