@@ -16,18 +16,22 @@ function load() {
     modalDiv.appendChild(modalContent)
 
     function show() {
-      if (!modalDiv.classList.contains("show")) {
-        modalDiv.classList.add("show")
-        modalDiv.style.animation = "var(--transition-time) ease show"
-      } else {
-        modalDiv.style.animation = "var(--transition-time) ease hide"
-        setTimeout(() => {
-          modalDiv.classList.remove("show")
-        }, 200)
-      }
+      modalDiv.classList.add("show")
+      modalDiv.style.animation = "var(--transition-time) ease show"
     }
 
-    modalDiv.addEventListener("click", show)
+    function hide() {
+      modalDiv.style.animation = "var(--transition-time) ease hide"
+      modalDiv.classList.remove("show")
+    }
+
+    modalDiv.addEventListener("click", () => {
+      if (modalDiv.classList.contains("show")) {
+        hide()
+      } else {
+        show()
+      }
+    })
 
     function confirm(msg) {
       let ok = false
@@ -41,8 +45,8 @@ function load() {
      </div>`
       const okButton = modalContent.querySelector(".ok")
       const cancelButton = modalContent.querySelector(".cancel")
-      cancelButton.addEventListener("click", show)
-      okButton.addEventListener("click", show)
+      cancelButton.addEventListener("click", hide)
+      okButton.addEventListener("click", hide)
 
       modalContent.addEventListener("click", (e) => {
         e.stopPropagation()
