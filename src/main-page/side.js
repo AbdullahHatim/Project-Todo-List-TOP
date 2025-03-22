@@ -132,6 +132,7 @@ function getUserMadeContent() {
     const input = prompt("Enter Project Name")
     if (!input) return
     ProjectManager.addProject(input)
+    ProjectManager.getProject().addItem(DEFAULT_TODOLIST_ID)
     renderProjects()
   })
 
