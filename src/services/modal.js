@@ -16,26 +16,16 @@ function load() {
     modalDiv.appendChild(modalContent)
 
     function show() {
-      modalDiv.classList.add("show")
-      modalDiv.style.animation = "var(--transition-time) ease show"
+      modalDiv.style.animationName = "show"
     }
 
     function hide() {
-      modalDiv.style.animation = "var(--transition-time) ease hide"
-      modalDiv.classList.remove("show")
+      modalDiv.style.animationName = "hide"
     }
 
-    modalDiv.addEventListener("click", () => {
-      if (modalDiv.classList.contains("show")) {
-        hide()
-      } else {
-        show()
-      }
-    })
+    modalDiv.addEventListener("click", hide)
 
     function confirm(msg) {
-      let ok = false
-
       modalContent.className = "modal-content confirm"
       modalContent.innerHTML = /*html*/ `
       <p class="msg">${msg || ""}</p>
