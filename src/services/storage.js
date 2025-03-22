@@ -1,29 +1,29 @@
 const set = (key = "", item = "") => {
-  localStorage.setItem(key, item);
-};
+  localStorage.setItem(key, item)
+}
 
 const get = (key = "") => {
-  return localStorage.getItem(key);
-};
+  return localStorage.getItem(key)
+}
 
 const remove = (key = "") => {
-  localStorage.removeItem(key);
-};
+  localStorage.removeItem(key)
+}
 
 const empty = () => {
-  localStorage.empty();
-};
+  localStorage.clear()
+}
 
 const getObject = (key) => {
-  const item = get(key);
+  const item = get(key)
   if (item) {
-    return JSON.parse(item);
+    return JSON.parse(item)
   }
-  return null;
-};
+  return null
+}
 
 const setObject = (key, obj) => {
-  add(key, JSON.stringify(obj));
-};
+  add(key, JSON.stringify(obj))
+}
 
-export default { set, get, remove, empty, getObject, setObject };
+export default { set, get, remove, empty, getObject, setObject }
