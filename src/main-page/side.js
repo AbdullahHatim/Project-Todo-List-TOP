@@ -4,6 +4,8 @@ import { getTodosDueToday } from "@/components/utils/gettodosduetoday"
 import { ProjectManager } from "@/services/projectsmanager"
 
 const PROJECT_TOPIC = "Clicked-Project"
+const GENERAL_ID = "8adb2c18cafb0d0ad1a0113a080af51e"
+const TODAY_ID = "7925cbea7729ed237b37d5de3dc96218"
 
 function createSideButton(text, icon = "📄", classes = "side-item") {
   const button = document.createElement("button")
@@ -28,22 +30,22 @@ function getPreMadeContent() {
   const todayButton = createSideButton("Today", todayIcon)
 
   function addGeneralProject() {
-    if (!ProjectManager.getProject("General")) {
-      ProjectManager.addProject("General")
+    if (!ProjectManager.getProject(GENERAL_ID)) {
+      ProjectManager.addProject(GENERAL_ID)
     }
 
     generalProjectButton.addEventListener("click", () => {
-      PubSub.publish(PROJECT_TOPIC, ProjectManager.getProject("General"))
+      PubSub.publish(PROJECT_TOPIC, ProjectManager.getProject(GENERAL_ID))
     })
   }
 
   function addTodayProject() {
-    if (!ProjectManager.getProject("Today")) {
-      ProjectManager.addProject("Today")
+    if (!ProjectManager.getProject(TODAY_ID)) {
+      ProjectManager.addProject(TODAY_ID)
     }
 
     todayButton.addEventListener("click", () => {
-      const today = ProjectManager.getProject("Today")
+      const today = ProjectManager.getProject(TODAY_ID)
       today.clear()
       today.addItem("Today TodoList")
       for (const todo of getTodosDueToday(ProjectManager.projectList)) {
@@ -56,6 +58,10 @@ function getPreMadeContent() {
 
   addGeneralProject()
   addTodayProject()
+
+  addTaskButton.addEventListener("click", () => {
+    console.log("I Should Redirect To General and click Add Task Inside that")
+  })
 
   content.append(addTaskButton, generalProjectButton, todayButton)
   return content
@@ -78,8 +84,11 @@ function getUserMadeContent() {
 
   function renderProjects() {
     clearProjects()
-    for (let i = 0; i < ProjectManager.projectList.list.length - 2; i++) {
+    for (let i = 0; i < ProjectManager.projectList.list.length; i++) {
       const project = ProjectManager.getProject(i)
+      //ignore Today and General
+      if ([TODAY_ID, GENERAL_ID].includes(project.title)) continue
+
       const button = createSideButton(project.title)
 
       const removeButton = document.createElement("button")
