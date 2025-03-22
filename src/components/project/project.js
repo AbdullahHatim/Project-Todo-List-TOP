@@ -19,7 +19,13 @@ class Project {
   get title() {
     return this.#title
   }
+  set icon(value) {
+    this.#icon = String(value)
+  }
 
+  get icon() {
+    return this.#icon
+  }
   get creationDate() {
     return this.#creationDate
   }
