@@ -1,5 +1,6 @@
 import "./side-style.css"
 import PubSub from "pubsub-js"
+import { ProjectManager } from "@/services/projectsmanager"
 
 function createSideButton(text, icon = "📄", classes = "side-item") {
   const button = document.createElement("button")
@@ -31,13 +32,46 @@ function getUserMadeContent() {
   projectHeader.classList.add("side-item", "side-header")
   projectHeader.textContent = "Projects"
 
+  const removeIcon = /*html*/ `<svg style="color:red" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"></path><rect width="14" height="1" x="5" y="6" fill="currentColor" rx="0.5"></rect><path fill="currentColor" d="M10 9h1v8h-1V9zm3 0h1v8h-1V9z"></path><path stroke="currentColor" d="M17.5 6.5h-11V18A1.5 1.5 0 0 0 8 19.5h8a1.5 1.5 0 0 0 1.5-1.5V6.5zm-9 0h7V5A1.5 1.5 0 0 0 14 3.5h-4A1.5 1.5 0 0 0 8.5 5v1.5z"></path></g></svg>`
+
+  function renderProjects() {
+    for (let i = 0; i < ProjectManager.projectList.list.length; i++) {
+      const project = ProjectManager.getProject(i)
+      const button = createSideButton(project.title)
+
+      const removeButton = document.createElement("button")
+      removeButton.classList.add("icon", "remove-button")
+      removeButton.innerHTML = removeIcon
+      button.appendChild(removeButton)
+
+      removeButton.addEventListener("click", () => {
+        if (!confirm(`Delete Project ${project.icon} ${project.title}?`)) return
+        button.remove()
+        ProjectManager.removeProject(project.title)
+      })
+
+      if (project.icon) {
+        button.querySelector(".icon").textContent = project.icon
+      }
+      button.dataset.index = i
+      content.insertBefore(button, addProjectButton)
+      button.addEventListener("click", (e) => {
+        const index = e.target.dataset.index
+        if (typeof index === "undefined") return
+        console.log(ProjectManager.getProject(Number(index)))
+      })
+    }
+  }
+
   const addProjectIcon = /*html*/ `<svg xmlns="http://www.w3.org/2000/svg"><title>plus</title><path d="M5,13V12H11V6H12V12H18V13H12V19H11V13H5Z" /></svg>`
-
   const addProjectButton = createSideButton("Add Project", addProjectIcon, "side-item add-project")
-
   content.append(projectHeader, addProjectButton)
-  content.insertBefore(createSideButton("Project 1", "😀"), addProjectButton)
-  content.insertBefore(createSideButton("My Lovely Project", "😍"), addProjectButton)
+
+  addProjectButton.addEventListener("click", (e) => {})
+
+  renderProjects()
+  // content.insertBefore(createSideButton("Project 1", "😀"), addProjectButton)
+  // content.insertBefore(createSideButton("My Lovely Project", "😍"), addProjectButton)
 
   return content
 }
