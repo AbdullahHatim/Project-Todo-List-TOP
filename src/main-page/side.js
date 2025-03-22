@@ -41,6 +41,7 @@ function getUserMadeContent() {
     content.append(header, addButton)
   }
 
+  const PROJECT_TOPIC = "Clicked-Project"
   function renderProjects() {
     clearProjects()
     for (let i = 0; i < ProjectManager.projectList.list.length; i++) {
@@ -58,15 +59,24 @@ function getUserMadeContent() {
         ProjectManager.removeProject(project.title)
       })
 
+      button.querySelector("span").addEventListener("click", () => {
+        const input = prompt("Enter New Project Icon")
+        if (!input) return
+        project.icon = input.substring(0, 2)
+        ProjectManager.updateStorage()
+        renderProjects()
+      })
+
       if (project.icon) {
         button.querySelector(".icon").textContent = project.icon
       }
       button.dataset.index = i
       content.insertBefore(button, content.lastChild)
+
       button.addEventListener("click", (e) => {
         const index = e.target.dataset.index
         if (typeof index === "undefined") return
-        console.log(ProjectManager.getProject(Number(index)))
+        PubSub.publish(PROJECT_TOPIC, ProjectManager.getProject(Number(index)))
       })
     }
   }
