@@ -9,7 +9,7 @@ class Project {
 
   constructor(title, icon) {
     this.#title = title || ""
-    this.#icon = icon || ""
+    this.#icon = icon || "📄"
   }
 
   set title(value) {
