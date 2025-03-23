@@ -30,16 +30,19 @@ function load() {
       modalContent.innerHTML = /*html*/ `
       <p class="msg">${msg || ""}</p>
       <div class="buttons">
+      <button class="focus" style="scale: 0"></button>
       <button class="ok">ok</button>
       <button class="cancel">cancel</button>
      </div>`
       const okButton = modalContent.querySelector(".ok")
       const cancelButton = modalContent.querySelector(".cancel")
+      const focusBotton = modalContent.querySelector(".focus")
 
       cancelButton.addEventListener("click", hide)
       okButton.addEventListener("click", hide)
 
-      okButton.focus()
+      focusBotton.focus()
+      focusBotton.setAttribute("tabindex", -1)
       modalContent.addEventListener("click", (e) => {
         e.stopPropagation()
       })
