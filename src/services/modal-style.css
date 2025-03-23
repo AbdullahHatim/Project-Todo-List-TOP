@@ -48,10 +48,7 @@
 
   .modal-content {
     width: min(350px, 90vw);
-  }
-}
-@layer specific {
-  .confirm {
+
     overflow: hidden;
     position: relative;
     background-color: var(--primary-text-color);
@@ -70,6 +67,7 @@
       gap: 5px;
       justify-content: flex-end;
       button {
+        font-size: 0.9em;
         width: 70px;
         height: 30px;
         border-radius: 20px;
@@ -97,6 +95,21 @@
       width: inherit;
       height: 10px;
       background-color: var(--primary-color);
+    }
+  }
+}
+@layer specific {
+  .confirm {
+  }
+  .prompt {
+    .input {
+      box-sizing: border-box;
+      padding: 0.4em;
+      border-radius: 10px;
+      border: 2px var(--outline-color) solid;
+      &:focus-visible {
+        outline: 1px var(--outline-color) solid;
+      }
     }
   }
 }
