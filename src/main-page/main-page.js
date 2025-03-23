@@ -32,6 +32,7 @@ const slide = (e) => {
     overlay.style.animationName = "show"
   }
 }
+side.slide = slide
 document.querySelector(".menu-button").addEventListener("click", slide)
 document.querySelector(".overlay").addEventListener("click", slide)
 
