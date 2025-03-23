@@ -22,12 +22,14 @@ side.innerHTML = /*js*/ `
   <div class="pre-made"></div>
   <div class="user-made"></div>
 </div>`
-
+const overlay = side.querySelector(".overlay")
 const slide = (e) => {
-  if (side.classList.contains("slide-out")) {
-    side.classList.remove("slide-out")
-  } else {
+  if (!side.classList.contains("slide-out")) {
     side.classList.add("slide-out")
+    overlay.style.animationName = "hide"
+  } else {
+    side.classList.remove("slide-out")
+    overlay.style.animationName = "show"
   }
 }
 document.querySelector(".menu-button").addEventListener("click", slide)

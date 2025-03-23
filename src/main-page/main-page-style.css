@@ -43,7 +43,32 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+@layer animations {
+  @keyframes show {
+    from {
+      opacity: 0;
+      scale: 1;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+    }
+  }
 
+  @keyframes hide {
+    from {
+      opacity: 1;
+      scale: 1;
+    }
+    99% {
+      scale: 1;
+    }
+    to {
+      scale: 0;
+      opacity: 0;
+    }
+  }
+}
 @layer element-styling {
   button {
     border-radius: 5px;
@@ -107,32 +132,29 @@
   .top {
     position: relative;
     height: 32px;
-    /* padding: 1em; */
     padding-top: 0.5em;
     .menu-button {
       transition: ease-in-out 500ms right;
       position: absolute;
       right: 1em;
     }
-    /* TODO: refactor overlay */
   }
   .overlay {
+    display: none;
     position: fixed;
     margin-left: 280px;
     height: 100%;
-    width: 0;
+    width: 100%;
+    scale: 0;
+    opacity: 0;
     background-color: #00000022;
-    transition: var(--transition-time) var(--transition-type) width;
+    animation-fill-mode: forwards;
+    animation-duration: var(--transition-time);
   }
 
   @media (max-width: 750px) {
     .overlay {
-      width: 100%;
-    }
-    .slide-out {
-      .overlay {
-        width: 0;
-      }
+      display: block;
     }
     .main {
       margin-left: 0px;
