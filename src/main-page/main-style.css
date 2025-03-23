@@ -1,0 +1,24 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+  /* background-color: red; */
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: none;
+  padding: 3em;
+  padding-bottom: 0.5em;
+}
+
+.inner-content {
+  max-width: 1300px;
+  /* background-color: blue; */
+  width: 100%;
+}
+
+.todo,
+.todo-list {
+  border-bottom: 1px var(--outline-color) solid;
+}
+
+.main-item {
+}
