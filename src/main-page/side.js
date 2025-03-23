@@ -97,18 +97,20 @@ function getUserMadeContent() {
       button.appendChild(removeButton)
 
       removeButton.addEventListener("click", () => {
-        modal.confirm(`Delete Project ${project.icon} ${project.title}?`).addEventListener("click", () => {
+        const okButton = modal.confirm(`Delete Project ${project.icon} ${project.title}?`)
+        okButton.addEventListener("click", () => {
           button.remove()
           ProjectManager.removeProject(project.title)
         })
       })
 
       button.querySelector("span").addEventListener("click", () => {
-        const input = prompt("Enter New Project Icon")
-        if (!input) return
-        project.icon = input.substring(0, 2)
-        ProjectManager.updateStorage()
-        renderProjects()
+        const inputPrompt = modal.prompt("Enter New Project Icon")
+        inputPrompt.addEventListener("click", () => {
+          project.icon = inputPrompt.getInput().substring(0, 2)
+          ProjectManager.updateStorage()
+          renderProjects()
+        })
       })
 
       if (project.icon) {
@@ -130,11 +132,12 @@ function getUserMadeContent() {
   content.append(projectHeader, addProjectButton)
 
   addProjectButton.addEventListener("click", () => {
-    const input = prompt("Enter Project Name")
-    if (!input) return
-    ProjectManager.addProject(input)
-    ProjectManager.getProject().addItem(DEFAULT_TODOLIST_ID)
-    renderProjects()
+    const inputPrompt = modal.prompt("Enter Project Name")
+    inputPrompt.addEventListener("click", () => {
+      ProjectManager.addProject(inputPrompt.getInput())
+      ProjectManager.getProject().addItem(DEFAULT_TODOLIST_ID)
+      renderProjects()
+    })
   })
 
   renderProjects()
