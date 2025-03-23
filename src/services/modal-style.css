@@ -103,12 +103,12 @@
   }
   .prompt {
     .input {
-      box-sizing: border-box;
       padding: 0.4em;
       border-radius: 10px;
       border: 2px var(--outline-color) solid;
       &:focus-visible {
-        outline: 1px var(--outline-color) solid;
+        --outline-color: transparent;
+        outline: 2px var(--primary-color) solid;
       }
     }
   }
