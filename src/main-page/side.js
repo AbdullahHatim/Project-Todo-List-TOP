@@ -28,25 +28,16 @@ function getPreMadeContent() {
   const generalProjectButton = createSideButton("General", generalIcon)
   const todayButton = createSideButton("Today", todayIcon)
 
-  function addGeneralProject() {
-    generalProjectButton.addEventListener("click", () => {
-      PubSub.publish(PROJECT_TOPIC, ProjectManager.getProject(GENERAL_ID))
-    })
-  }
-
-  function addTodayProject() {
-    todayButton.addEventListener("click", () => {
-      const today = ProjectManager.getProject(TODAY_ID)
-      today.update()
-      PubSub.publish(PROJECT_TOPIC, today)
-    })
-  }
-
-  addGeneralProject()
-  addTodayProject()
-
   addTaskButton.addEventListener("click", () => {
     console.log("I Should Redirect To General and click Add Task Inside that")
+  })
+
+  generalProjectButton.addEventListener("click", () => {
+    PubSub.publish(PROJECT_TOPIC, ProjectManager.getGeneralProject())
+  })
+
+  todayButton.addEventListener("click", () => {
+    PubSub.publish(PROJECT_TOPIC, ProjectManager.getTodayProject())
   })
 
   content.append(addTaskButton, generalProjectButton, todayButton)
