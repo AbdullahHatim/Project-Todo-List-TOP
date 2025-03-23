@@ -29,29 +29,15 @@ function getPreMadeContent() {
   const todayButton = createSideButton("Today", todayIcon)
 
   function addGeneralProject() {
-    if (!ProjectManager.getProject(GENERAL_ID)) {
-      ProjectManager.addProject(GENERAL_ID)
-      ProjectManager.getProject(GENERAL_ID).addItem(DEFAULT_TODOLIST_ID)
-    }
-
     generalProjectButton.addEventListener("click", () => {
       PubSub.publish(PROJECT_TOPIC, ProjectManager.getProject(GENERAL_ID))
     })
   }
 
   function addTodayProject() {
-    if (!ProjectManager.getProject(TODAY_ID)) {
-      ProjectManager.addProject(TODAY_ID)
-    }
-
     todayButton.addEventListener("click", () => {
       const today = ProjectManager.getProject(TODAY_ID)
-      today.clear()
-      today.addItem(DEFAULT_TODOLIST_ID)
-      for (const todo of getTodosDueToday(ProjectManager.projectList)) {
-        today.getItem().addItem(todo)
-      }
-      ProjectManager.updateStorage()
+      today.update()
       PubSub.publish(PROJECT_TOPIC, today)
     })
   }
@@ -135,7 +121,6 @@ function getUserMadeContent() {
     const inputPrompt = modal.prompt("Enter Project Name")
     inputPrompt.addEventListener("click", () => {
       ProjectManager.addProject(inputPrompt.getInput())
-      ProjectManager.getProject().addItem(DEFAULT_TODOLIST_ID)
       renderProjects()
     })
   })
