@@ -8,10 +8,10 @@ content.innerHTML = /*html*/ `
 const side = document.querySelector(".side")
 const main = document.querySelector(".main")
 
-main.innerHTML = /*html*/ `
+main.innerHTML = /*js*/ `
 <div class="main-content"></div>`
 
-side.innerHTML = /*html*/ `
+side.innerHTML = /*js*/ `
 <div class="overlay"></div>
 <div class="top">
   <button class="menu-button">
@@ -47,5 +47,6 @@ window.matchMedia("(max-width: 750px)").addEventListener("change", (event) => {
 })
 
 //---------------load-content-----------------
+import("@/services/modal")
 import("./side.js")
 import("./main.js")
