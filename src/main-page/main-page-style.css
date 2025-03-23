@@ -4,7 +4,7 @@
     --secondary-background-color: #eff3fd;
 
     --primary-color: #1a67f8;
-    --secondary-color: #c1c1c1;
+    --secondary-color: #909090;
 
     --highlight-color: #8cb3fb57;
     --hover-color: #5d5d5d11;
@@ -89,9 +89,7 @@
     background-color: var(--primary-background-color);
     height: auto;
     margin-left: 280px;
-    transition: var(--transition-type) var(--transition-time);
-    padding: 3em;
-    padding-bottom: 0.5em;
+    transition: var(--transition-type) var(--transition-time) margin;
   }
 
   .slide-out {
