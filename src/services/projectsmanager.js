@@ -1,7 +1,6 @@
 import storage from "./storage"
 import { ProjectList } from "../components/project/projectlist"
 import { getTodosDueToday } from "@/components/utils/gettodosduetoday"
-import { Project } from "@/components/project/project"
 
 const GENERAL_ID = "8adb2c18cafb0d0ad1a0113a080af51e"
 const TODAY_ID = "7925cbea7729ed237b37d5de3dc96218"
@@ -77,13 +76,15 @@ export const ProjectManager = (() => {
     today.update()
     return today
   }
-  function isGeneralProject(project = new Project()) {
+  function isGeneralProject(project) {
     return project === predefinedProjectList.getItem(GENERAL_ID)
   }
-  function isTodayProject(project = new Project()) {
+  function isTodayProject(project) {
     return project === predefinedProjectList.getItem(TODAY_ID)
   }
-
+  function isDefaultTodoList(todoList) {
+    return todoList.title === DEFAULT_TODOLIST_ID
+  }
   return Object.freeze({
     updateStorage,
     addProject,
@@ -94,6 +95,7 @@ export const ProjectManager = (() => {
     isGeneralProject,
     getTodayProject,
     isTodayProject,
+    isDefaultTodoList,
     get projectList() {
       return projectList
     },
