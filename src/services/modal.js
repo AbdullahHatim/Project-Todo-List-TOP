@@ -35,30 +35,51 @@ function load() {
      </div>`
       const okButton = modalContent.querySelector(".ok")
       const cancelButton = modalContent.querySelector(".cancel")
+
       cancelButton.addEventListener("click", hide)
       okButton.addEventListener("click", hide)
 
+      okButton.focus()
       modalContent.addEventListener("click", (e) => {
         e.stopPropagation()
       })
+
       show()
       return okButton
     }
 
     function prompt(msg) {
-      modalContent.className = "modal-content confirm"
+      modalContent.className = "modal-content prompt"
       modalContent.innerHTML = /*html*/ `
       <p class="msg">${msg || ""}</p>
-      <input type="text" id="input">
+      <input type="text" class="input">
       <div class="buttons">
       <button class="ok">ok</button>
       <button class="cancel">cancel</button>
      </div>`
+      const okButton = modalContent.querySelector(".ok")
+      const cancelButton = modalContent.querySelector(".cancel")
+      const input = document.querySelector("input")
+
+      cancelButton.addEventListener("click", hide)
+      okButton.addEventListener("click", hide)
+
+      okButton.getInput = () => String(input.value)
 
       modalContent.addEventListener("click", (e) => {
         e.stopPropagation()
       })
+
+      input.focus()
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          okButton.click()
+        }
+      })
+      show()
+      return okButton
     }
+
     return { confirm, prompt }
   })()
 
