@@ -4,9 +4,6 @@ import { getTodosDueToday } from "@/components/utils/gettodosduetoday"
 import { ProjectManager } from "@/services/projectsmanager"
 
 const PROJECT_TOPIC = "Clicked-Project"
-const GENERAL_ID = "8adb2c18cafb0d0ad1a0113a080af51e"
-const TODAY_ID = "7925cbea7729ed237b37d5de3dc96218"
-const DEFAULT_TODOLIST_ID = "7a109073db7959600fcfa3414e7c85e6"
 
 function createSideButton(text, icon = "📄", classes = "side-item") {
   const button = document.createElement("button")
@@ -63,8 +60,6 @@ function getUserMadeContent() {
     clearProjects()
     for (let i = 0; i < ProjectManager.projectList.list.length; i++) {
       const project = ProjectManager.getProject(i)
-      //ignore Today and General
-      if ([TODAY_ID, GENERAL_ID].includes(project.title)) continue
 
       const button = createSideButton(project.title)
 
@@ -81,7 +76,8 @@ function getUserMadeContent() {
         })
       })
 
-      button.querySelector("span").addEventListener("click", () => {
+      const iconButton = button.querySelector("span")
+      iconButton.addEventListener("click", () => {
         const inputPrompt = modal.prompt("Enter New Project Icon")
         inputPrompt.addEventListener("click", () => {
           project.icon = inputPrompt.getInput().substring(0, 2)
