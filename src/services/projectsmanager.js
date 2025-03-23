@@ -28,8 +28,7 @@ export const ProjectManager = (() => {
   }
 
   const addProject = (title) => {
-    projectList.addItem(title)
-    getProject().addItem(DEFAULT_TODOLIST_ID)
+    projectList.addItem(title).getItem().addItem(DEFAULT_TODOLIST_ID)
     updateStorage()
   }
 
@@ -44,6 +43,7 @@ export const ProjectManager = (() => {
 
   const reset = () => {
     projectList.clear()
+    predefinedProjectList.clear()
     updateStorage()
   }
 
