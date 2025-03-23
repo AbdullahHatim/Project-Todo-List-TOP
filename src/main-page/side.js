@@ -13,6 +13,14 @@ function createSideButton(text, icon = "📄", classes = "side-item") {
   `
   return button
 }
+function publishProject(project) {
+  const side = document.querySelector(".side")
+  PubSub.publish(PROJECT_TOPIC, project)
+  if (window.matchMedia("(max-width: 750px)").matches) {
+    side.slide()
+  }
+}
+const side = document.querySelector(".side")
 
 function getPreMadeContent() {
   const content = document.createElement("div")
@@ -30,11 +38,11 @@ function getPreMadeContent() {
   })
 
   generalProjectButton.addEventListener("click", () => {
-    PubSub.publish(PROJECT_TOPIC, ProjectManager.getGeneralProject())
+    publishProject(ProjectManager.getGeneralProject())
   })
 
   todayButton.addEventListener("click", () => {
-    PubSub.publish(PROJECT_TOPIC, ProjectManager.getTodayProject())
+    publishProject(ProjectManager.getTodayProject())
   })
 
   content.append(addTaskButton, generalProjectButton, todayButton)
@@ -95,7 +103,7 @@ function getUserMadeContent() {
       button.addEventListener("click", (e) => {
         const index = e.target.dataset.index
         if (typeof index === "undefined") return
-        PubSub.publish(PROJECT_TOPIC, ProjectManager.getProject(Number(index)))
+        publishProject(ProjectManager.getProject(Number(index)))
       })
     }
   }
