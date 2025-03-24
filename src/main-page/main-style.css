@@ -21,7 +21,11 @@
     width: 100%;
     text-align: left;
     display: flex;
-    gap: 10px;
+    gap: 7px;
+    p {
+      display: grid;
+      align-content: center;
+    }
   }
 
   .clear-input {
@@ -50,6 +54,30 @@
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     /* font-size: 0.97em; */
+    &:hover {
+      background-color: transparent;
+    }
+  }
+  .checked {
+    text-decoration: line-through;
+    color: var(--secondary-text-color);
+  }
+  .todo {
+    .complete-button {
+      display: grid;
+      place-content: center;
+      svg {
+        scale: 0.8;
+        border: 1px var(--secondary-text-color) solid;
+        border-radius: 50%;
+        color: transparent;
+        &:hover {
+          color: var(--secondary-text-color);
+        }
+      }
+    }
+    .remove-button {
+    }
   }
 
   .header {
@@ -70,11 +98,13 @@
     padding-top: 0.5em;
     color: var(--secondary-text-color);
     font-size: 0.9em;
+
     .icon {
       display: grid;
       height: 24px;
       aspect-ratio: 1/1;
       place-content: center;
+
       svg {
         width: 13px;
         height: 13px;
