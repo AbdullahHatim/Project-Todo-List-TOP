@@ -23,6 +23,23 @@
     display: flex;
     gap: 10px;
   }
+
+  .clear-input {
+    box-sizing: border-box;
+    padding: 0;
+    box-sizing: border-box;
+    /* width: max-content; added via javascript ./main */
+    font-weight: inherit;
+    font-size: inherit;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    &:disabled {
+      background-color: transparent;
+      color: black;
+    }
+  }
 }
 
 @layer specific {
@@ -36,34 +53,26 @@
   }
 
   .header {
+    gap: 5px;
+    box-sizing: border-box;
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
     font-weight: 600;
-    font-size: 1.3em;
+    font-size: 1.5em;
     .icon {
-      display: none;
-    }
-
-    .input {
-      padding: 0;
-      box-sizing: border-box;
-      /* width: max-content; added via javascript ./main */
-      font-weight: inherit;
-      font-size: inherit;
-      border: none;
-      &:focus {
-        outline: none;
-      }
+      width: 32px;
+      padding-bottom: 2px;
     }
   }
   .add-button {
+    display: flex;
     margin: 0;
     padding-top: 0.5em;
     color: var(--secondary-text-color);
     font-size: 0.9em;
     .icon {
       display: grid;
-      height: 20px;
+      height: 24px;
       aspect-ratio: 1/1;
       place-content: center;
       svg {
