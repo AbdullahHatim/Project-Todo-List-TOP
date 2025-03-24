@@ -102,6 +102,17 @@ export const ProjectManager = (() => {
   function getDefaultTodoList(project) {
     return project.list.find((todoList) => isDefaultTodoList(todoList))
   }
+  const removeTodoFromAllProjects = (todo) => {
+    for (const project of [...projectList.list, ...predefinedProjectList.list]) {
+      for (const todoList of project.list) {
+        const index = todoList.list.findIndex((t) => t === todo)
+        if (index !== -1) {
+          todoList.list.splice(index, 1)
+        }
+      }
+    }
+    updateStorage()
+  }
 
   return Object.freeze({
     updateStorage,
@@ -117,6 +128,7 @@ export const ProjectManager = (() => {
     isPreDefinedProject,
     isDefaultTodoList,
     getDefaultTodoList,
+    removeTodoFromAllProjects,
     get projectList() {
       return projectList
     },
