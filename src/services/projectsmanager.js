@@ -91,7 +91,7 @@ export const ProjectManager = (() => {
     return todoList.title === DEFAULT_TODOLIST_ID
   }
   function getDefaultTodoList(project) {
-    return project.list.find((todoList) => isDefaultTodoList(todoList)).list
+    return project.list.find((todoList) => isDefaultTodoList(todoList))
   }
 
   return Object.freeze({
