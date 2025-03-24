@@ -87,6 +87,10 @@ export const ProjectManager = (() => {
   function isTodayProject(project) {
     return project === predefinedProjectList.getItem(TODAY_ID)
   }
+  function isPreDefinedProject(project) {
+    const condition = isTodayProject(project) || isGeneralProject(project)
+    return condition
+  }
   function isDefaultTodoList(todoList) {
     return todoList.title === DEFAULT_TODOLIST_ID
   }
@@ -105,6 +109,7 @@ export const ProjectManager = (() => {
     isGeneralProject,
     getTodayProject,
     isTodayProject,
+    isPreDefinedProject,
     isDefaultTodoList,
     getDefaultTodoList,
     get projectList() {
