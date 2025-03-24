@@ -83,14 +83,14 @@ function getContent() {
           todoButton.classList.remove("checked")
         }
 
-        function addRemoveButton() {
+        function addRemoveButton(button) {
           const removeButton = document.createElement("button")
           removeButton.classList.add("remove-button")
           removeButton.innerHTML = removeIcon
-          todoButton.appendChild(removeButton)
+          button.appendChild(removeButton)
           removeButton.addEventListener("click", () => {
             function remove() {
-              todoButton.remove()
+              button.remove()
               defaultTodoList.removeItem(todo.title)
               ProjectManager.updateStorage()
               renderProject()
@@ -106,8 +106,8 @@ function getContent() {
             })
           })
         }
-        function addCompleteButton() {
-          const completeButton = todoButton.querySelector(".icon")
+        function addCompleteButton(button) {
+          const completeButton = button.querySelector(".icon")
           completeButton.classList.add("complete-button")
           completeButton.innerHTML = completeIcon
           if (todo.checked) {
@@ -122,8 +122,8 @@ function getContent() {
             renderProject()
           })
         }
-        addRemoveButton()
-        addCompleteButton()
+        addRemoveButton(todoButton)
+        addCompleteButton(todoButton)
         block.appendChild(todoButton)
       }
       const addTaskIcon = `<svg ><path fill="currentColor" fill-rule="evenodd" d="M6 6V.5a.5.5 0 0 1 1 0V6h5.5a.5.5 0 1 1 0 1H7v5.5a.5.5 0 1 1-1 0V7H.5a.5.5 0 0 1 0-1H6z"></path></svg>`
