@@ -57,11 +57,11 @@ export const ProjectManager = (() => {
       predefinedProjectList.parse(preDefinedJSON)
     }
 
-    if (!predefinedProjectList.getItem(GENERAL_ID)) {
+    if (!getProject(GENERAL_ID)) {
       predefinedProjectList.addItem(GENERAL_ID).getItem().addItem(DEFAULT_TODOLIST_ID)
     }
 
-    if (!predefinedProjectList.getItem(TODAY_ID)) {
+    if (!getProject(TODAY_ID)) {
       predefinedProjectList.addItem(TODAY_ID).getItem().addItem(DEFAULT_TODOLIST_ID)
     }
     updateStorage()
@@ -70,10 +70,10 @@ export const ProjectManager = (() => {
   init()
 
   function getGeneralProject() {
-    return predefinedProjectList.getItem(GENERAL_ID)
+    return getProject(GENERAL_ID)
   }
   function getTodayProject() {
-    const today = predefinedProjectList.getItem(TODAY_ID)
+    const today = getProject(TODAY_ID)
     today.update = () => {
       today.getItem().clear()
       for (const todo of getTodosDueToday(projectList)) {
@@ -87,10 +87,10 @@ export const ProjectManager = (() => {
     return today
   }
   function isGeneralProject(project) {
-    return project === predefinedProjectList.getItem(GENERAL_ID)
+    return project === getProject(GENERAL_ID)
   }
   function isTodayProject(project) {
-    return project === predefinedProjectList.getItem(TODAY_ID)
+    return project === getProject(TODAY_ID)
   }
   function isPreDefinedProject(project) {
     const condition = isTodayProject(project) || isGeneralProject(project)
