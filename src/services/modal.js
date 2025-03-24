@@ -62,7 +62,7 @@ function load() {
      </div>`
       const okButton = modalContent.querySelector(".ok")
       const cancelButton = modalContent.querySelector(".cancel")
-      const input = document.querySelector("input")
+      const input = modalContent.querySelector("input")
 
       cancelButton.addEventListener("click", hide)
       okButton.addEventListener("click", hide)
