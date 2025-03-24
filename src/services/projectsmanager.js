@@ -26,7 +26,8 @@ export const ProjectManager = (() => {
   }
 
   const getProject = (value) => {
-    return projectList.getItem(value)
+    const project = projectList.getItem(value) || predefinedProjectList.getItem(value)
+    return project
   }
   const removeProject = (title) => {
     const project = projectList.removeItem(title)
@@ -41,8 +42,8 @@ export const ProjectManager = (() => {
   const resetEverything = () => {
     projectList.clear()
     predefinedProjectList.clear()
-    init()
     updateStorage()
+    init()
   }
 
   function init() {
@@ -118,6 +119,9 @@ export const ProjectManager = (() => {
     getDefaultTodoList,
     get projectList() {
       return projectList
+    },
+    get predefinedProjectList() {
+      return predefinedProjectList
     },
   })
 })()
