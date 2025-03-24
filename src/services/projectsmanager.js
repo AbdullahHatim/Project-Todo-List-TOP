@@ -7,25 +7,16 @@ const STORAGE_TOPIC = "storage_update"
 const GENERAL_ID = "8adb2c18cafb0d0ad1a0113a080af51e"
 const TODAY_ID = "7925cbea7729ed237b37d5de3dc96218"
 const DEFAULT_TODOLIST_ID = "7a109073db7959600fcfa3414e7c85e6"
+const MAIN_KEY = "projectlist"
+const PREDEFINED_KEY = "predefined"
 
 export const ProjectManager = (() => {
-  const mainKey = "projectlist"
-  const preDefinedKey = "predefined"
-  const projectListJSON = storage.get(mainKey)
-  const preDefinedJSON = storage.get(preDefinedKey)
   const projectList = new ProjectList()
   const predefinedProjectList = new ProjectList()
 
-  if (projectListJSON) {
-    projectList.parse(projectListJSON)
-  }
-  if (preDefinedJSON) {
-    predefinedProjectList.parse(projectListJSON)
-  }
-
   const updateStorage = () => {
-    storage.set(mainKey, projectList.toString())
-    storage.set(preDefinedKey, predefinedProjectList.toString())
+    storage.set(MAIN_KEY, projectList.toString())
+    storage.set(PREDEFINED_KEY, predefinedProjectList.toString())
     PubSub.publish(STORAGE_TOPIC, () => {})
   }
 
@@ -55,6 +46,16 @@ export const ProjectManager = (() => {
   }
 
   function init() {
+    const projectListJSON = storage.get(MAIN_KEY)
+    const preDefinedJSON = storage.get(PREDEFINED_KEY)
+
+    if (projectListJSON) {
+      projectList.parse(projectListJSON)
+    }
+    if (preDefinedJSON) {
+      predefinedProjectList.parse(preDefinedJSON)
+    }
+
     if (!predefinedProjectList.getItem(GENERAL_ID)) {
       predefinedProjectList.addItem(GENERAL_ID).getItem().addItem(DEFAULT_TODOLIST_ID)
     }
