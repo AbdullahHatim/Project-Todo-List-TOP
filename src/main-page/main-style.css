@@ -1,24 +1,80 @@
-.main-content {
-  display: flex;
-  justify-content: center;
-  /* background-color: red; */
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: none;
-  padding: 3em;
-  padding-bottom: 0.5em;
+@layer general {
+  .main-content {
+    display: flex;
+    justify-content: center;
+    /* background-color: red; */
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: none;
+    padding: 3em;
+    padding-top: 4em;
+    padding-bottom: 0.5em;
+  }
+
+  .inner-content {
+    max-width: 900px;
+    /* background-color: blue; */
+    width: 100%;
+  }
+
+  .main-item {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    gap: 10px;
+  }
 }
 
-.inner-content {
-  max-width: 1300px;
-  /* background-color: blue; */
-  width: 100%;
-}
+@layer specific {
+  .todo,
+  .todo-list {
+    border-bottom: 1px var(--outline-color) solid;
+    border-radius: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    /* font-size: 0.97em; */
+  }
 
-.todo,
-.todo-list {
-  border-bottom: 1px var(--outline-color) solid;
-}
+  .header {
+    margin: 0;
+    margin-bottom: 1em;
+    font-weight: 600;
+    font-size: 1.3em;
+    .icon {
+      display: none;
+    }
 
-.main-item {
+    .input {
+      padding: 0;
+      box-sizing: border-box;
+      /* width: max-content; added via javascript ./main */
+      font-weight: inherit;
+      font-size: inherit;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+  .add-button {
+    margin: 0;
+    padding-top: 0.5em;
+    color: var(--secondary-text-color);
+    font-size: 0.9em;
+    .icon {
+      display: grid;
+      height: 20px;
+      aspect-ratio: 1/1;
+      place-content: center;
+      svg {
+        width: 13px;
+        height: 13px;
+        color: var(--primary-color);
+      }
+    }
+    &:hover {
+      background-color: transparent;
+      color: var(--primary-color);
+    }
+  }
 }
