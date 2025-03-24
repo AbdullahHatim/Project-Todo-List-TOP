@@ -3,6 +3,7 @@ import PubSub from "pubsub-js"
 import { getTodosDueToday } from "@/components/utils/gettodosduetoday"
 import { ProjectManager } from "@/services/projectsmanager"
 
+const STORAGE_TOPIC = "storage_update"
 const PROJECT_TOPIC = "Clicked-Project"
 
 function createSideButton(text, icon = "📄", classes = "side-item") {
@@ -121,6 +122,9 @@ function getUserMadeContent() {
   })
 
   renderProjects()
+  PubSub.subscribe(STORAGE_TOPIC, () => {
+    renderProjects()
+  })
   // content.insertBefore(createSideButton("Project 1", "😀"), addProjectButton)
   // content.insertBefore(createSideButton("My Lovely Project", "😍"), addProjectButton)
 
