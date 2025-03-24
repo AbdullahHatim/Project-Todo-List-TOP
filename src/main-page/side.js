@@ -35,7 +35,14 @@ function getPreMadeContent() {
   const todayButton = createSideButton("Today", todayIcon)
 
   addTaskButton.addEventListener("click", () => {
-    console.log("I Should Redirect To General and click Add Task Inside that")
+    const prompt = modal.prompt("Enter Todo Name")
+    prompt.addEventListener("click", () => {
+      const generalProject = ProjectManager.getGeneralProject()
+      const defaultTodoList = ProjectManager.getDefaultTodoList(generalProject)
+      defaultTodoList.addItem(prompt.getInput())
+      ProjectManager.updateStorage()
+      generalProjectButton.click()
+    })
   })
 
   generalProjectButton.addEventListener("click", () => {
