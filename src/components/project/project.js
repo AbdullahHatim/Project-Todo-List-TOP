@@ -20,7 +20,7 @@ class Project {
     return this.#title
   }
   set icon(value) {
-    this.#icon = String(value)
+    this.#icon = value ? String(value) : "📄"
   }
 
   get icon() {
