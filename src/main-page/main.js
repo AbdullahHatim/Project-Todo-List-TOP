@@ -94,6 +94,7 @@ function getContent() {
               defaultTodoList.removeItem(todo.title)
               ProjectManager.updateStorage()
               renderProject()
+              ProjectManager.removeTodoFromAllProjects(todo)
             }
             if (todo.checked) {
               remove()
