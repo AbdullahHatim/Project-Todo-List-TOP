@@ -51,17 +51,8 @@ function getContent() {
           iconInput.style.width = "0"
         }
       } else {
-        let clickTimeout
         iconInput.addEventListener("click", () => {
-          if (clickTimeout) {
-            clearTimeout(clickTimeout)
-          }
-          clickTimeout = setTimeout(() => {
-            iconInput.setSelectionRange(2, 2)
-          }, 200)
-        })
-        iconInput.addEventListener("dblclick", () => {
-          clearTimeout(clickTimeout)
+          iconInput.setSelectionRange(0, 2)
         })
 
         iconInput.addEventListener("keypress", (e) => {
