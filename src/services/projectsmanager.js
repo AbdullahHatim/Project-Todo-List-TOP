@@ -76,10 +76,10 @@ export const ProjectManager = (() => {
     const today = getProject(TODAY_ID)
     today.update = () => {
       today.getItem().clear()
-      for (const todo of getTodosDueToday(projectList)) {
+      for (const todo of getTodosDueToday(predefinedProjectList)) {
         today.getItem().addItem(todo)
       }
-      for (const todo of getTodosDueToday(predefinedProjectList)) {
+      for (const todo of getTodosDueToday(projectList)) {
         today.getItem().addItem(todo)
       }
     }
