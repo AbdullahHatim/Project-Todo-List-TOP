@@ -3,6 +3,7 @@ import PubSub from "pubsub-js"
 import { ProjectManager } from "@/services/projectsmanager"
 
 const PROJECT_TOPIC = "Clicked-Project"
+const EMPTY = "empty"
 function createMainButton(text, icon = "📄", classes = "main-item") {
   const button = document.createElement("button")
   button.classList.add(...classes.split(" "))
@@ -29,26 +30,59 @@ function getContent() {
 
     if (ProjectManager.isGeneralProject(project)) {
       title = "General"
-      icon = ""
+      icon = EMPTY
     }
     if (ProjectManager.isTodayProject(project)) {
       title = "Today"
-      icon = ""
+      icon = EMPTY
     }
     const defaultBlockDiv = (function getDefaultBlock() {
       const block = document.createElement("div")
       block.innerHTML = /*html*/ `<div class="main-item header">
-        <span class="icon">${icon}</span>
-        <input type="text" class="input" value="${icon} ${title}">
+        <input type="text" class="clear-input icon" value="${icon}" maxlength="2">
+        <input type="text" class="clear-input title" value="${title}">
       </div>
       `
-      const input = block.querySelector(".input")
-      input.addEventListener("input", resizeInput)
-      resizeInput.call(input)
-      function resizeInput() {
-        this.style.width = this.value.length + 3 + "ch"
-      }
+      const iconInput = block.querySelector(".icon")
+      const input = block.querySelector(".title")
+      if (ProjectManager.isPreDefinedProject(project)) {
+        input.disabled = true
+        if (iconInput.value === EMPTY) {
+          iconInput.style.width = "0"
+        }
+      } else {
+        let clickTimeout
+        iconInput.addEventListener("click", () => {
+          if (clickTimeout) {
+            clearTimeout(clickTimeout)
+          }
+          clickTimeout = setTimeout(() => {
+            iconInput.setSelectionRange(2, 2)
+          }, 200)
+        })
+        iconInput.addEventListener("dblclick", () => {
+          clearTimeout(clickTimeout)
+        })
 
+        iconInput.addEventListener("keypress", (e) => {
+          if (e.key !== "Enter") return
+          iconInput.blur()
+          project.icon = iconInput.value
+          ProjectManager.updateStorage()
+        })
+
+        input.addEventListener("input", resizeInput)
+        input.addEventListener("keypress", (e) => {
+          if (e.key !== "Enter") return
+          input.blur()
+          project.title = input.value
+          ProjectManager.updateStorage()
+        })
+        resizeInput.call(input)
+        function resizeInput() {
+          this.style.width = this.value.length + 3 + "ch"
+        }
+      }
       const defaultTodoList = ProjectManager.getDefaultTodoList(project)
 
       for (const todo of defaultTodoList.list) {
