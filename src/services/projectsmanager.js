@@ -1,7 +1,9 @@
 import storage from "./storage"
+import PubSub from "pubsub-js"
 import { ProjectList } from "../components/project/projectlist"
 import { getTodosDueToday } from "@/components/utils/gettodosduetoday"
 
+const STORAGE_TOPIC = "storage_update"
 const GENERAL_ID = "8adb2c18cafb0d0ad1a0113a080af51e"
 const TODAY_ID = "7925cbea7729ed237b37d5de3dc96218"
 const DEFAULT_TODOLIST_ID = "7a109073db7959600fcfa3414e7c85e6"
@@ -24,6 +26,7 @@ export const ProjectManager = (() => {
   const updateStorage = () => {
     storage.set(mainKey, projectList.toString())
     storage.set(preDefinedKey, predefinedProjectList.toString())
+    PubSub.publish(STORAGE_TOPIC, () => {})
   }
 
   const addProject = (title) => {
