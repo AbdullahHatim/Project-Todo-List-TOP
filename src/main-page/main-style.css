@@ -69,6 +69,12 @@
     .complete-button {
       display: grid;
       padding-top: 5px;
+      &.checked {
+        /* background-color: red; */
+        svg {
+          color: var(--secondary-text-color);
+        }
+      }
       svg {
         scale: 0.8;
         border: 1px var(--secondary-text-color) solid;

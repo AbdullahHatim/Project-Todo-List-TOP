@@ -109,8 +109,14 @@ function getContent() {
           const completeButton = todoButton.querySelector(".icon")
           completeButton.classList.add("complete-button")
           completeButton.innerHTML = completeIcon
+          if (todo.checked) {
+            completeButton.classList.add("checked")
+          } else {
+            completeButton.classList.remove("checked")
+          }
           completeButton.addEventListener("click", () => {
             todo.toggleCheck()
+            completeButton.classList.toggle("checked")
             ProjectManager.updateStorage()
             renderProject()
           })
