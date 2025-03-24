@@ -39,10 +39,15 @@ export const ProjectManager = (() => {
     updateStorage()
     return project
   }
-
-  const reset = () => {
+  const resetProject = (project) => {
+    const title = project.title
+    removeProject(project)
+    addProject(title)
+  }
+  const resetEverything = () => {
     projectList.clear()
     predefinedProjectList.clear()
+    init()
     updateStorage()
   }
 
@@ -85,17 +90,23 @@ export const ProjectManager = (() => {
   function isDefaultTodoList(todoList) {
     return todoList.title === DEFAULT_TODOLIST_ID
   }
+  function getDefaultTodoList(project) {
+    return project.list.find((todoList) => isDefaultTodoList(todoList)).list
+  }
+
   return Object.freeze({
     updateStorage,
     addProject,
     getProject,
     removeProject,
-    reset,
+    resetProject,
+    resetEverything,
     getGeneralProject,
     isGeneralProject,
     getTodayProject,
     isTodayProject,
     isDefaultTodoList,
+    getDefaultTodoList,
     get projectList() {
       return projectList
     },
