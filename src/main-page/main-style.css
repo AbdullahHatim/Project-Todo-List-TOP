@@ -25,6 +25,9 @@
     p {
       display: grid;
       align-content: center;
+      max-width: 70%;
+      word-break: break-all;
+      hyphens: auto;
     }
   }
 
@@ -65,7 +68,7 @@
   .todo {
     .complete-button {
       display: grid;
-      place-content: center;
+      padding-top: 5px;
       svg {
         scale: 0.8;
         border: 1px var(--secondary-text-color) solid;
