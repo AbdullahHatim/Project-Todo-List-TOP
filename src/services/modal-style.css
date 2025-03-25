@@ -140,9 +140,9 @@
       flex-direction: column;
       gap: inherit;
     }
-    .priority-btn {
-      width: 4em;
-    }
+  }
+  .priority-btn {
+    width: 4em;
   }
   .active[data-value="1"] {
     background-color: var(--priority-high); /* High priority */
