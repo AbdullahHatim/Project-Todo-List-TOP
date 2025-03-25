@@ -16,6 +16,15 @@
 
     --paragraph-color: #666666;
     --outline-color: #e6e6e6;
+
+    --priority-high: rgba(255, 0, 0, 0.247);
+    --priority-high-text-color: rgb(255, 0, 0);
+
+    --priority-normal: var(--highlight-color);
+    --priority-normal-text-color: var(--primary-color);
+
+    --priority-low: rgba(255, 209, 111, 0.274);
+    --priority-low-text-color: rgb(255, 153, 0);
   }
 }
 @layer reset {
