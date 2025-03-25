@@ -59,7 +59,7 @@ function load() {
       <div class="buttons">
       <button class="ok">ok</button>
       <button class="cancel">cancel</button>
-     </div>`
+      </div>`
       const okButton = modalContent.querySelector(".ok")
       const cancelButton = modalContent.querySelector(".cancel")
       const input = modalContent.querySelector("input")
@@ -83,7 +83,80 @@ function load() {
       return okButton
     }
 
-    return { confirm, prompt }
+    function modifyTodo(msg, todo) {
+      modalContent.className = "modal-content modify-todo"
+      modalContent.innerHTML = /*html*/ `
+      <p class="msg">${msg || ""}</p>
+      <div class="input-group">
+        <label>Title</label>
+        <input type="text" class="input input-title" value="${todo?.title || ""}">
+      </div>
+      <div class="input-group">
+        <label>Description</label>
+        <textarea class="input input-description">${todo?.description || ""}</textarea>
+      </div>
+      <div class="input-group">
+        <label>Notes</label>
+        <textarea class="input input-notes">${todo?.notes || ""}</textarea>
+      </div>
+      <div class="additional-controls">
+        <div class="date-picker">
+          <label>Due Date</label>
+          <input type="datetime-local" class="input input-dueDate"
+                 value="${todo?.dueDate ? todo.dueDate.toISOString().slice(0, 16) : ""}">
+        </div>
+        <div class="priority-buttons">
+          <label>Priority</label>
+          <button class="priority-btn ${todo?.priority === 1 ? "active" : ""}" data-value="1">High</button>
+          <button class="priority-btn ${todo?.priority === 0 ? "active" : ""}" data-value="0">Normal</button>
+          <button class="priority-btn ${todo?.priority === -1 ? "active" : ""}" data-value="-1">Low</button>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="ok">ok</button>
+        <button class="cancel">cancel</button>
+      </div>`
+      const okButton = modalContent.querySelector(".ok")
+      const cancelButton = modalContent.querySelector(".cancel")
+      const inputs = modalContent.querySelectorAll(".input")
+      const priorityButtons = modalContent.querySelectorAll(".priority-btn")
+
+      let selectedPriority = todo?.priority ?? 0
+      priorityButtons.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault()
+          priorityButtons.forEach((b) => b.classList.remove("active"))
+          btn.classList.add("active")
+          selectedPriority = Number(btn.dataset.value)
+        })
+      })
+
+      cancelButton.addEventListener("click", hide)
+      okButton.addEventListener("click", hide)
+
+      okButton.getInput = () => ({
+        title: modalContent.querySelector(".input-title").value,
+        description: modalContent.querySelector(".input-description").value,
+        notes: modalContent.querySelector(".input-notes").value,
+        dueDate: modalContent.querySelector(".input-dueDate").value,
+        priority: selectedPriority,
+      })
+
+      modalContent.addEventListener("click", (e) => {
+        e.stopPropagation()
+      })
+
+      inputs[0].focus()
+      modalContent.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          okButton.click()
+        }
+      })
+      show()
+      return okButton
+    }
+
+    return { confirm, prompt, modifyTodo }
   })()
 
   window.modal = modal
