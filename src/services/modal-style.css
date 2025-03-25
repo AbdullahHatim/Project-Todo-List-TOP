@@ -61,6 +61,10 @@
     border-radius: 20px;
     font-weight: 900;
 
+    label,
+    p {
+      font-weight: 700;
+    }
     .buttons {
       color: var(--primary-text-color);
       display: flex;
@@ -143,6 +147,7 @@
   }
   .priority-btn {
     width: 4em;
+    font-weight: 700;
   }
   .active[data-value="1"] {
     background-color: var(--priority-high); /* High priority */
@@ -155,5 +160,16 @@
   .active[data-value="-1"] {
     background-color: var(--priority-low); /* Low priority */
     color: var(--priority-low-text-color);
+  }
+}
+
+@media (max-width: 750px) {
+  .modal-content {
+    label {
+      font-weight: 800;
+    }
+    .priority-btn {
+      font-weight: 800;
+    }
   }
 }
