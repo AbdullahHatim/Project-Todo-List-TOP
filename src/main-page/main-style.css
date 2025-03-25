@@ -22,6 +22,7 @@
     text-align: left;
     display: flex;
     gap: 7px;
+
     p {
       display: grid;
       align-content: center;
@@ -66,9 +67,15 @@
     color: var(--secondary-text-color);
   }
   .todo {
+    p {
+      display: flex;
+      max-width: 70%;
+      padding-top: 7px;
+    }
     .complete-button {
       display: grid;
       padding-top: 5px;
+
       &.checked {
         /* background-color: red; */
         svg {
