@@ -93,6 +93,7 @@ class Todo {
     this.#description = obj.description
     this.#dueDate = new Date(obj.dueDate)
     this.#creationDate = new Date(obj.creationDate)
+    this.#priority = obj.priority
     this.#notes = obj.notes
     this.#checkList = new CheckList().parse(obj.checkList)
     return this
