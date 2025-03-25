@@ -40,7 +40,7 @@ class Todo {
   }
 
   set dueDate(value) {
-    this.#dueDate = value instanceof Date ? value : new Date()
+    this.#dueDate = value instanceof Date ? value : new Date(value)
   }
 
   get dueDate() {
