@@ -136,6 +136,7 @@ function load() {
       okButton.addEventListener("click", hide)
 
       okButton.getInput = () => {
+        //Authored By AI
         const dueDateStr = modalContent.querySelector(".input-dueDate").value
         let dueDate = null
 
@@ -145,6 +146,7 @@ function load() {
           const [hours, minutes] = timePart.split(":").map(Number)
           // Create date using UTC to avoid timezone conversion
           dueDate = new Date(Date.UTC(year, month - 1, day, hours, minutes))
+          //End of: Authored By AI
         }
 
         return {
