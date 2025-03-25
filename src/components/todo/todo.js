@@ -1,3 +1,4 @@
+import { addDays } from "date-fns"
 import { Priority } from "../utils/priority"
 import { CheckList } from "./checklist"
 
@@ -13,6 +14,7 @@ class Todo {
 
   constructor(title) {
     this.#title = title || ""
+    this.#dueDate = addDays(this.#dueDate, 1)
   }
 
   set title(value) {
