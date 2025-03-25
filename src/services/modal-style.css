@@ -90,6 +90,15 @@
         background-color: var(--secondary-color);
       }
     }
+    .input {
+      padding: 0.4em;
+      border-radius: 10px;
+      border: 2px var(--outline-color) solid;
+      &:focus-visible {
+        --outline-color: transparent;
+        outline: 2px var(--primary-color) solid;
+      }
+    }
     &::before {
       content: "";
       position: absolute;
@@ -105,14 +114,46 @@
   .confirm {
   }
   .prompt {
-    .input {
-      padding: 0.4em;
-      border-radius: 10px;
-      border: 2px var(--outline-color) solid;
-      &:focus-visible {
-        --outline-color: transparent;
-        outline: 2px var(--primary-color) solid;
+  }
+  .modify-todo {
+    gap: 9px;
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      label {
+        min-width: 80px;
+        align-self: flex-start;
+      }
+      textarea {
+        resize: none;
+        height: 6em;
+        &.input-notes {
+          color: var(--secondary-text-color);
+        }
       }
     }
+
+    .additional-controls {
+      display: flex;
+      flex-direction: column;
+      gap: inherit;
+    }
+    .priority-btn {
+      width: 4em;
+    }
+  }
+  .active[data-value="1"] {
+    background-color: var(--priority-high); /* High priority */
+    color: var(--priority-high-text-color);
+  }
+  .active[data-value="0"] {
+    background-color: var(--priority-normal); /* Normal priority */
+    color: var(--priority-normal-text-color);
+  }
+  .active[data-value="-1"] {
+    background-color: var(--priority-low); /* Low priority */
+    color: var(--priority-low-text-color);
   }
 }
