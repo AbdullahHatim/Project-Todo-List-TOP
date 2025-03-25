@@ -1,4 +1,5 @@
 import "./modal-style.css"
+import { parseISO } from "date-fns"
 
 function load() {
   const modal = (function () {
@@ -134,19 +135,31 @@ function load() {
       cancelButton.addEventListener("click", hide)
       okButton.addEventListener("click", hide)
 
-      okButton.getInput = () => ({
-        title: modalContent.querySelector(".input-title").value,
-        description: modalContent.querySelector(".input-description").value,
-        notes: modalContent.querySelector(".input-notes").value,
-        dueDate: modalContent.querySelector(".input-dueDate").value,
-        priority: selectedPriority,
-      })
+      okButton.getInput = () => {
+        const dueDateStr = modalContent.querySelector(".input-dueDate").value
+        let dueDate = null
+
+        if (dueDateStr) {
+          const [datePart, timePart] = dueDateStr.split("T")
+          const [year, month, day] = datePart.split("-").map(Number)
+          const [hours, minutes] = timePart.split(":").map(Number)
+          // Create date using UTC to avoid timezone conversion
+          dueDate = new Date(Date.UTC(year, month - 1, day, hours, minutes))
+        }
+
+        return {
+          title: modalContent.querySelector(".input-title").value,
+          description: modalContent.querySelector(".input-description").value,
+          notes: modalContent.querySelector(".input-notes").value,
+          dueDate: dueDate,
+          priority: selectedPriority,
+        }
+      }
 
       modalContent.addEventListener("click", (e) => {
         e.stopPropagation()
       })
 
-      inputs[0].focus()
       modalContent.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           okButton.click()
