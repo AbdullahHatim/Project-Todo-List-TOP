@@ -1,6 +1,8 @@
 import "./main-style.css"
 import PubSub from "pubsub-js"
 import { ProjectManager } from "@/services/projectsmanager"
+import { Priority } from "@/components/utils/priority"
+import { formatDuration, intervalToDuration, minutesToMilliseconds } from "date-fns"
 
 const PROJECT_TOPIC = "Clicked-Project"
 
@@ -78,7 +80,17 @@ function getContent() {
       for (const todo of defaultTodoList.list) {
         const todoButton = createMainButton(todo.title, "", "main-item todo")
         todoButton.addEventListener("click", () => {
-          // console.log("Hello")
+          const okButton = modal.modifyTodo("", todo)
+          okButton.addEventListener("click", () => {
+            const inputObj = okButton.getInput()
+            todo.title = inputObj.title
+            todo.description = inputObj.description
+            todo.notes = inputObj.notes
+            todo.dueDate = inputObj.dueDate
+            todo.priority = inputObj.priority
+            renderProject()
+            ProjectManager.updateStorage()
+          })
         })
         if (todo.checked) {
           todoButton.classList.add("checked")
@@ -86,6 +98,15 @@ function getContent() {
           todoButton.classList.remove("checked")
         }
 
+        function addPriorityButton(button) {
+          if (todo.priority == Priority.NORMAL) return
+          const priorityButton = document.createElement("button")
+          priorityButton.className = "priority-btn active"
+          priorityButton.style.height = "1.8em"
+          priorityButton.dataset.value = todo.priority
+          priorityButton.textContent = Priority.getType(todo.priority)
+          button.appendChild(priorityButton)
+        }
         function addRemoveButton(button) {
           const removeButton = document.createElement("button")
           removeButton.classList.add("remove-button")
@@ -98,7 +119,9 @@ function getContent() {
               defaultTodoList.removeItem(todo.title)
               ProjectManager.updateStorage()
               renderProject()
-              ProjectManager.removeTodoFromAllProjects(todo)
+              if (ProjectManager.isTodayProject(project)) {
+                ProjectManager.removeTodoFromAllProjects(todo)
+              }
             }
             if (todo.checked) {
               remove()
@@ -127,6 +150,7 @@ function getContent() {
             renderProject()
           })
         }
+        addPriorityButton(todoButton)
         addRemoveButton(todoButton)
         addCompleteButton(todoButton)
         block.appendChild(todoButton)
