@@ -19,5 +19,9 @@
     "merge-main": "git merge main --no-edit",
     "add-dist": "git add dist -f",
     "commit": "git commit"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "pubsub-js": "^1.9.5"
   }
 }
