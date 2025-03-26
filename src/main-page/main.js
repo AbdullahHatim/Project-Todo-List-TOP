@@ -134,9 +134,9 @@ function getContent() {
 
       block.appendChild(addTaskButton)
     }
-
     const defaultBlockDiv = (function getDefaultBlock() {
       const block = document.createElement("div")
+      block.className = "block default-block"
       block.innerHTML = /*html*/ `<div class="main-item header">
         <input type="text" class="clear-input icon" value="${icon}" maxlength="2">
         <input type="text" class="clear-input title" value="${title}">
@@ -178,8 +178,59 @@ function getContent() {
       renderAddTodoButton(defaultTodoList, block)
       return block
     })()
-
     content.append(defaultBlockDiv)
+    //testing
+    // project.addItem("New TodoList test 1").getItem().addItem("Todo 1").addItem("Todo 2")
+    // project.addItem("New TodoList test 2").getItem().addItem("Todo 1").addItem("Todo 2").addItem("Todo 3")
+    // project
+    //   .addItem("New TodoList test 3")
+    //   .getItem()
+    //   .addItem("Todo 1")
+    //   .addItem("Todo 2")
+    //   .addItem("Todo 3")
+    //   .addItem("Todo 4")
+    // ProjectManager.updateStorage()
+    //end: testing
+
+    function getBlock(todoList) {
+      const block = document.createElement("details")
+      block.className = "block"
+      block.open = true
+
+      block.innerHTML = /*html*/ `
+      <summary>
+      <div class="main-item todolist-title">
+        <input type="text" class="clear-input title" value="${todoList.title}">
+      </div>
+      </summary>
+      `
+      if ("Input Event Listeners") {
+        const input = block.querySelector(".title")
+        input.addEventListener("click", (e) => {
+          e.stopPropagation()
+        })
+        input.addEventListener("input", () => {
+          input.style.width = input.value.length + 3 + "ch"
+        })
+        input.addEventListener("keypress", (e) => {
+          if (e.key !== "Enter") return
+          todoList.title = input.value
+          ProjectManager.updateStorage()
+          renderProject()
+        })
+        input.style.width = input.value.length + 3 + "ch"
+      }
+
+      renderTodos(todoList, block)
+      renderAddTodoButton(todoList, block)
+      return block
+    }
+    for (const todoList of project.list) {
+      if (ProjectManager.isTodayProject(project)) continue
+      if (ProjectManager.isDefaultTodoList(todoList)) continue
+
+      content.append(getBlock(todoList))
+    }
   }
 
   function showDefaultProject() {
