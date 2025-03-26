@@ -8,6 +8,7 @@ const PROJECT_TOPIC = "Clicked-Project"
 
 function createSideButton(text, icon = "📄", classes = "side-item") {
   const button = document.createElement("button")
+  text = text.length > 18 ? text.substring(0, 18) + "..." : text
   button.classList.add(...classes.split(" "))
   button.innerHTML = /*js*/ `
     <span class="icon">${icon}</span><p>${text}</p>
