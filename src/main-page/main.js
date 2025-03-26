@@ -204,7 +204,8 @@ function getContent() {
       </div>
       </summary>
       `
-      if ("Input Event Listeners") {
+      if ("Input & block Event Listeners") {
+        block.addEventListener("keyup", (e) => e.preventDefault())
         const input = block.querySelector(".title")
         input.addEventListener("click", (e) => {
           e.stopPropagation()
