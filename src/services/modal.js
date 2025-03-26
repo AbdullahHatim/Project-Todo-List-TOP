@@ -1,5 +1,5 @@
 import "./modal-style.css"
-import { parseISO } from "date-fns"
+import { format, parseISO } from "date-fns"
 
 function load() {
   const modal = (function () {
@@ -114,6 +114,7 @@ function load() {
         </div>
       </div>
       <div class="buttons">
+        <p class="creation-date">created: ${format(todo.creationDate, "MM/dd/yyyy hh:mm a")}</p>
         <button class="ok">ok</button>
         <button class="cancel">cancel</button>
       </div>`

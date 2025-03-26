@@ -144,6 +144,15 @@
       flex-direction: column;
       gap: inherit;
     }
+
+    .creation-date {
+      /* display: none; */
+      position: relative;
+      color: var(--secondary-text-color);
+      margin-right: auto;
+      align-self: center;
+      font-size: 0.7em;
+    }
   }
   .priority-btn {
     width: 4em;
@@ -171,5 +180,8 @@
     .priority-btn {
       font-weight: 800;
     }
+  }
+  .creation-date {
+    font-size: 0.6em;
   }
 }
