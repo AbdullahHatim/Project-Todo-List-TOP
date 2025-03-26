@@ -200,4 +200,26 @@
       color: var(--primary-color);
     }
   }
+  .add-list {
+    padding: 0;
+    color: black;
+    height: 20px;
+    position: relative;
+    p {
+      position: relative;
+      background-color: white;
+      width: 80px;
+      left: 50%;
+      transform: translate(-50%, 30%);
+      color: var(--secondary-text-color);
+    }
+    border-radius: 0;
+    &:hover {
+      background-color: transparent;
+      border-bottom: 2px var(--primary-color) solid;
+      p {
+        color: var(--primary-color);
+      }
+    }
+  }
 }
