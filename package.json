@@ -12,7 +12,7 @@
   "scripts": {
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
-    "deploy": "nu \"C:/scripts/deploy.txt/\""
+    "deploy": "nu \"C:/scripts/deploy.txt\""
   },
   "dependencies": {
     "date-fns": "^4.1.0",
