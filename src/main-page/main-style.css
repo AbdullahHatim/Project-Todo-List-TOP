@@ -134,7 +134,10 @@
     &::-webkit-details-marker {
       display: none;
     }
-
+    color: var(--headline-color);
+    .title {
+      color: inherit;
+    }
     &::before {
       content: "▶";
       position: relative;
@@ -147,6 +150,7 @@
       content: "▼";
     }
     :is(details[open]) & {
+      color: var(--primary-color);
       .remove-button {
         scale: 0;
         svg {
