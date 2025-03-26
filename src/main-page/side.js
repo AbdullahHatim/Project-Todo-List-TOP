@@ -54,6 +54,7 @@ function getPreMadeContent() {
   })
 
   content.append(addTaskButton, generalProjectButton, todayButton)
+  generalProjectButton.classList.add("active")
   return content
 }
 
