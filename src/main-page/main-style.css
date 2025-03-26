@@ -112,7 +112,29 @@
     }
   }
   .block summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative; /* Establish positioning context for ::after */
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::before {
+      content: "▶";
+      position: relative;
+      left: -20px;
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    :is(details[open]) &::before {
+      content: "▼";
+    }
+
     .todolist-title {
+      position: relative;
+      left: -20px;
       display: inline;
       width: max-content;
       font-weight: 600;
