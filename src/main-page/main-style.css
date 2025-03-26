@@ -12,9 +12,12 @@
   }
 
   .inner-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
     max-width: 900px;
-    /* background-color: blue; */
     width: 100%;
+    margin-bottom: 20em;
   }
 
   .main-item {
@@ -52,7 +55,7 @@
 
 @layer specific {
   .todo,
-  .todo-list {
+  .block summary {
     border-bottom: 1px var(--outline-color) solid;
     border-radius: 0;
     padding-top: 0.5em;
@@ -106,6 +109,14 @@
     .icon {
       width: 32px;
       padding-bottom: 2px;
+    }
+  }
+  .block summary {
+    .todolist-title {
+      display: inline;
+      width: max-content;
+      font-weight: 600;
+      font-size: 0.95em;
     }
   }
   .add-button {
