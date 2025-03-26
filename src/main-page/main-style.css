@@ -56,15 +56,32 @@
 @layer specific {
   .todo,
   .block summary {
+    position: relative;
     border-bottom: 1px var(--outline-color) solid;
     border-radius: 0;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding-top: 0.55em;
+    padding-bottom: 0.55em;
     /* font-size: 0.97em; */
     &:hover {
       background-color: transparent;
     }
+    .remove-button {
+      padding: 3px;
+      padding-top: 5px;
+      height: 25px;
+      width: 24px;
+      margin-left: 0;
+      position: absolute;
+      right: 1px;
+      display: inline;
+      svg {
+        overflow: hidden;
+        height: inherit;
+        width: inherit;
+      }
+    }
   }
+
   .checked {
     text-decoration: line-through;
     color: var(--secondary-text-color);
@@ -94,8 +111,6 @@
           color: var(--secondary-text-color);
         }
       }
-    }
-    .remove-button {
     }
   }
 
@@ -131,6 +146,14 @@
     :is(details[open]) &::before {
       content: "▼";
     }
+    :is(details[open]) & {
+      .remove-button {
+        scale: 0;
+        svg {
+          color: transparent;
+        }
+      }
+    }
 
     .todolist-title {
       position: relative;
@@ -139,6 +162,14 @@
       width: max-content;
       font-weight: 600;
       font-size: 0.95em;
+    }
+
+    .remove-button {
+      scale: 1;
+      margin-bottom: 0.55em;
+      top: 0;
+    }
+    &:hover {
     }
   }
   .add-button {
