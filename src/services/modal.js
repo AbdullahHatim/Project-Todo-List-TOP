@@ -69,6 +69,9 @@ function load() {
       okButton.addEventListener("click", hide)
 
       okButton.getInput = () => String(input.value)
+      okButton.setInput = (value) => {
+        input.value = String(value)
+      }
 
       modalContent.addEventListener("click", (e) => {
         e.stopPropagation()
