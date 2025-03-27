@@ -6,8 +6,8 @@ content.innerHTML = /*html*/ `
 <main class="main"></main>
 <div class="settings-modal">
   <div class="settings-content">
-    <button class="settings-download">Download Projects</button>
-    <button class="settings-upload">Upload Projects</button>
+    <button class="settings-download">Download Backup</button>
+    <button class="settings-upload">Upload Backup</button>
     <button class="settings-reset">Reset Everything</button>
   </div>
 </div>`
