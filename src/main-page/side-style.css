@@ -96,12 +96,12 @@
   }
 
   .remove-button {
+    position: absolute;
+    right: 5%;
     overflow: hidden;
     display: grid;
     align-content: center;
     pointer-events: all;
-    position: relative;
-    margin-left: auto;
     width: 32px;
     height: 32px;
     &:hover {
