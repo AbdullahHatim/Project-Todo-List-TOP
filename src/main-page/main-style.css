@@ -29,7 +29,6 @@
     p {
       display: grid;
       align-content: center;
-      max-width: 70%;
       word-break: break-all;
       hyphens: auto;
     }
@@ -95,9 +94,12 @@
     color: var(--secondary-text-color);
   }
   .todo {
+    .priority-btn {
+      margin-right: 30px;
+      min-width: 4em;
+    }
     p {
       display: flex;
-      max-width: 62%;
       padding-top: 7px;
     }
     .complete-button {
