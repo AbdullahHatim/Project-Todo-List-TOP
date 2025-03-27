@@ -214,6 +214,7 @@ function getContent() {
       const defaultTodoList = ProjectManager.getDefaultTodoList(project)
 
       renderTodos(defaultTodoList, block)
+      if (ProjectManager.isTodayProject(project)) return block
       renderAddTodoButton(defaultTodoList, block)
       return block
     })()
@@ -248,6 +249,7 @@ function getContent() {
 
       content.append(getBlock(todoList))
     }
+    if (ProjectManager.isTodayProject(project)) return
     renderAddListButton()
   }
 
