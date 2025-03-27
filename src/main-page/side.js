@@ -96,12 +96,7 @@ function getUserMadeContent() {
 
       const iconButton = button.querySelector("span")
       iconButton.addEventListener("click", () => {
-        const inputPrompt = modal.prompt("Enter New Project Icon")
-        inputPrompt.addEventListener("click", () => {
-          project.icon = inputPrompt.getInput().substring(0, 2)
-          ProjectManager.updateStorage()
-          renderProjects()
-        })
+        button.click()
       })
 
       if (project.icon) {
