@@ -167,6 +167,21 @@ function getContent() {
         })
       })
     }
+    function addInputEventListeners(input, renamedElement) {
+      input.addEventListener("click", (e) => {
+        e.stopPropagation()
+      })
+      input.addEventListener("input", () => {
+        input.style.width = input.value.length + 3 + "ch"
+      })
+      input.addEventListener("keypress", (e) => {
+        if (e.key !== "Enter") return
+        renamedElement.title = input.value
+        ProjectManager.updateStorage()
+        input.blur()
+      })
+      input.style.width = input.value.length + 3 + "ch"
+    }
     const defaultBlockDiv = (function getDefaultBlock() {
       const block = document.createElement("div")
       block.className = "block default-block"
@@ -193,17 +208,7 @@ function getContent() {
           renderProject()
         })
 
-        input.addEventListener("input", resizeInput)
-        input.addEventListener("keypress", (e) => {
-          if (e.key !== "Enter") return
-          project.title = input.value
-          ProjectManager.updateStorage()
-          renderProject()
-        })
-        resizeInput.call(input)
-        function resizeInput() {
-          this.style.width = this.value.length + 3 + "ch"
-        }
+        addInputEventListeners(input, project)
       }
       const defaultTodoList = ProjectManager.getDefaultTodoList(project)
 
@@ -228,19 +233,7 @@ function getContent() {
       if ("Input & block Event Listeners") {
         block.addEventListener("keyup", (e) => e.preventDefault())
         const input = block.querySelector(".title")
-        input.addEventListener("click", (e) => {
-          e.stopPropagation()
-        })
-        input.addEventListener("input", () => {
-          input.style.width = input.value.length + 3 + "ch"
-        })
-        input.addEventListener("keypress", (e) => {
-          if (e.key !== "Enter") return
-          todoList.title = input.value
-          ProjectManager.updateStorage()
-          renderProject()
-        })
-        input.style.width = input.value.length + 3 + "ch"
+        addInputEventListeners(input, todoList)
       }
 
       renderTodos(todoList, block)
