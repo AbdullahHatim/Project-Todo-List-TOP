@@ -130,7 +130,7 @@
     box-sizing: border-box;
     margin: 0;
     margin-bottom: 0.8em;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1.5em;
     .title {
       width: 100%;
@@ -160,7 +160,7 @@
       position: relative;
       left: -20px;
       display: inline-block;
-      margin-right: 5px;
+      margin-right: 1em;
     }
 
     :is(details[open]) &::before {
@@ -182,6 +182,7 @@
       display: inline;
       font-weight: 600;
       font-size: 0.95em;
+      padding-right: 1em;
     }
 
     .remove-button {
