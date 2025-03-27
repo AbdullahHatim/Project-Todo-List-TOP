@@ -94,8 +94,8 @@
     color: var(--secondary-text-color);
   }
   .todo {
+    padding-right: 25px;
     .priority-btn {
-      margin-right: 30px;
       min-width: 4em;
     }
     p {
