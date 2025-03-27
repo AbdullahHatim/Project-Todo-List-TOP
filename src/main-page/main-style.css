@@ -89,7 +89,7 @@
   .todo {
     p {
       display: flex;
-      max-width: 70%;
+      max-width: 62%;
       padding-top: 7px;
     }
     .complete-button {
