@@ -15,9 +15,11 @@ function createSideButton(text, icon = "📄", classes = "side-item") {
   `
   return button
 }
+let lastPublished
 function publishProject(project) {
   const side = document.querySelector(".side")
   PubSub.publish(PROJECT_TOPIC, project)
+  lastPublished = project
   if (window.matchMedia("(max-width: 750px)").matches) {
     side.slide()
   }
@@ -89,8 +91,11 @@ function getUserMadeContent() {
       removeButton.addEventListener("click", () => {
         const okButton = modal.confirm(`Delete Project ${project.icon} ${project.title}?`)
         okButton.addEventListener("click", () => {
-          button.remove()
           ProjectManager.removeProject(project.title)
+          if (project === lastPublished) {
+            publishProject(ProjectManager.getGeneralProject())
+          }
+          button.remove()
         })
       })
 
