@@ -169,25 +169,24 @@ function getContent() {
     }
     function addInputEventListeners(input, renamedElement) {
       input.addEventListener("click", (e) => {
-        e.stopPropagation()
+        e.preventDefault()
+        const prompt = modal.prompt("Modify Title")
+        prompt.setInput(renamedElement.title)
+        prompt.addEventListener("click", (e) => {
+          renamedElement.title = prompt.getInput()
+          ProjectManager.updateStorage()
+          input.textContent = prompt.getInput()
+        })
       })
-      input.addEventListener("input", () => {
-        input.style.width = input.value.length + 3 + "ch"
-      })
-      input.addEventListener("keypress", (e) => {
-        if (e.key !== "Enter") return
-        renamedElement.title = input.value
-        ProjectManager.updateStorage()
-        input.blur()
-      })
-      input.style.width = input.value.length + 3 + "ch"
     }
     const defaultBlockDiv = (function getDefaultBlock() {
       const block = document.createElement("div")
       block.className = "block default-block"
       block.innerHTML = /*html*/ `<div class="main-item header">
-        <input type="text" class="clear-input icon" value="${icon}" maxlength="2">
-        <input type="text" class="clear-input title" value="${title}">
+        <div class="input-wrapper">
+          <p class="clear-input icon">${icon}</p>
+          <p class="clear-input title">${title}</p> 
+        </div>
       </div>
       `
       const iconInput = block.querySelector(".icon")
@@ -198,14 +197,16 @@ function getContent() {
         iconInput.style.width = "0"
       } else {
         iconInput.addEventListener("click", () => {
-          iconInput.setSelectionRange(0, 2)
+          const prompt = modal.prompt("Enter New Project Icon")
+          prompt.addEventListener("click", (e) => {
+            project.icon = prompt.getInput().substr(0, 2)
+            ProjectManager.updateStorage()
+            iconInput.textContent = project.icon
+          })
         })
 
         iconInput.addEventListener("keypress", (e) => {
           if (e.key !== "Enter") return
-          project.icon = iconInput.value
-          ProjectManager.updateStorage()
-          renderProject()
         })
 
         addInputEventListeners(input, project)
@@ -226,7 +227,7 @@ function getContent() {
       block.innerHTML = /*html*/ `
       <summary>
       <div class="main-item todolist-title">
-        <input type="text" class="clear-input title" value="${todoList.title}">
+        <div class="input-wrapper"><p class="clear-input title"> ${todoList.title}</p></div>
       </div>
       </summary>
       `
