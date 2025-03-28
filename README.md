@@ -13,6 +13,34 @@ Organize, Prioritize, and Complete your todos using a clean interface. All your 
 
 ---
 
+## Showcase
+
+<details>
+<summary><strong>Desktop Views</strong></summary>
+
+<div align="center" style="margin: 20px 0; columns: 2; column-gap: 20px;">
+  <img src="assets/showcase/image (2).png" alt="Desktop view 1" style="border-radius: 8px; width: 100%; margin-bottom: 20px; break-inside: avoid;">
+  <img src="assets/showcase/image (3).png" alt="Desktop view 2" style="border-radius: 8px; width: 100%; margin-bottom: 20px; break-inside: avoid;">
+  <img src="assets/showcase/image (4).png" alt="Desktop view 3" style="border-radius: 8px; width: 100%; margin-bottom: 20px; break-inside: avoid;">
+  <img src="assets/showcase/image (5).png" alt="Desktop view 4" style="border-radius: 8px; width: 100%; margin-bottom: 20px; break-inside: avoid;">
+  <img src="assets/showcase/image (6).png" alt="Desktop view 5" style="border-radius: 8px; width: 100%; margin-bottom: 20px; break-inside: avoid;">
+  <img src="assets/showcase/image (7).png" alt="Desktop view 6" style="border-radius: 8px; width: 100%; margin-bottom: 20px; break-inside: avoid;">
+</div>
+</details>
+
+<details>
+<summary><strong>Mobile Views</strong></summary>
+
+<div align="center" style="margin: 20px 0;">
+  <img src="assets/showcase/photo_5994799473995400352_y.jpg" alt="Mobile view 1" style="border-radius: 8px; width: 300px; margin: 10px;">
+  <img src="assets/showcase/photo_5994799473995400353_y.jpg" alt="Mobile view 2" style="border-radius: 8px; width: 300px; margin: 10px;">
+  <img src="assets/showcase/photo_5994799473995400354_y.jpg" alt="Mobile view 3" style="border-radius: 8px; width: 300px; margin: 10px;">
+  <img src="assets/showcase/photo_5994799473995400355_y.jpg" alt="Mobile view 4" style="border-radius: 8px; width: 300px; margin: 10px;">
+</div>
+</details>
+
+---
+
 **Website:** [todoing.com](https://abdullahhatim.github.io/Project-Todo-List-TOP/)
 
 Works Great on Mobile TOO LES GOOOOOOOOOOO
