@@ -16,7 +16,7 @@ Organize, Prioritize, and Complete your todos using a clean interface. All your 
 ## Showcase
 
 <details>
-<summary><strong>Desktop Views</strong></summary>
+<summary><strong>Desktop</strong></summary>
 
 <div align="center" style="margin: 20px 0; columns: 2; column-gap: 20px;">
   <img src="assets/showcase/image (2).png" alt="Desktop view 1" style="border-radius: 8px; width: 100%; margin-bottom: 20px; break-inside: avoid;">
@@ -29,7 +29,7 @@ Organize, Prioritize, and Complete your todos using a clean interface. All your 
 </details>
 
 <details>
-<summary><strong>Mobile Views</strong></summary>
+<summary><strong>Mobile</strong></summary>
 
 <div align="center" style="margin: 20px 0;">
   <img src="assets/showcase/photo_5994799473995400352_y.jpg" alt="Mobile view 1" style="border-radius: 8px; width: 300px; margin: 10px;">
@@ -82,3 +82,5 @@ with about an average of 4 Hours daily, the last few days have been a 6-7 hours 
 12. I find it funny how no matter how much you perfect your code, there is gonna be some bugs and it's fascinating to glitch your code
 13. i knew exactly what i wanted in the settings but didn't know how to implement them, this is where ai is really helpful although it didn't write perfect code, infact i had to correct almost everything it created so once again i knew what it was writing, this backup feature is a game changer i think
 14. Finally finished the project at the time of writing this README and I feel like a big brain, but gotta keep learning - the road is still long, may god make things easy
+
+[message me](https://t.me/Soo0B)
